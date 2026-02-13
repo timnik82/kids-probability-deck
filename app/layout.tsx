@@ -11,9 +11,5 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <html lang="ru">
-      <body className="font-sans">{children}</body>
-    </html>
-  );
+  return children;
 }
