@@ -1,23 +1,22 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import dynamic from 'next/dynamic';
-import { useMemo } from 'react';
+import { lazy, Suspense } from 'react';
 
 const slides = [
-  dynamic(() => import('@/slides/Slide0Welcome')),
-  dynamic(() => import('@/slides/Slide1WhatIs')),
-  dynamic(() => import('@/slides/Slide2Draw')),
-  dynamic(() => import('@/slides/Slide3Playground')),
-  dynamic(() => import('@/slides/Slide4Combinations')),
-  dynamic(() => import('@/slides/Slide5Ticket')),
-  dynamic(() => import('@/slides/Slide6HowMany')),
-  dynamic(() => import('@/slides/Slide7Jackpot')),
-  dynamic(() => import('@/slides/Slide8Prizes')),
-  dynamic(() => import('@/slides/Slide9Simulation')),
-  dynamic(() => import('@/slides/Slide10Special')),
-  dynamic(() => import('@/slides/Slide11Quiz')),
-  dynamic(() => import('@/slides/Slide12Wrapup')),
+  lazy(() => import('@/slides/Slide0Welcome')),
+  lazy(() => import('@/slides/Slide1WhatIs')),
+  lazy(() => import('@/slides/Slide2Draw')),
+  lazy(() => import('@/slides/Slide3Playground')),
+  lazy(() => import('@/slides/Slide4Combinations')),
+  lazy(() => import('@/slides/Slide5Ticket')),
+  lazy(() => import('@/slides/Slide6HowMany')),
+  lazy(() => import('@/slides/Slide7Jackpot')),
+  lazy(() => import('@/slides/Slide8Prizes')),
+  lazy(() => import('@/slides/Slide9Simulation')),
+  lazy(() => import('@/slides/Slide10Special')),
+  lazy(() => import('@/slides/Slide11Quiz')),
+  lazy(() => import('@/slides/Slide12Wrapup')),
 ];
 
 interface SlideRendererProps {
@@ -38,7 +37,9 @@ export default function SlideRenderer({ current, goTo }: SlideRendererProps) {
         transition={{ duration: 0.25, ease: 'easeInOut' }}
         className="h-full flex flex-col items-center"
       >
-        <SlideComponent goTo={goTo} />
+        <Suspense fallback={null}>
+          <SlideComponent goTo={goTo} />
+        </Suspense>
       </motion.div>
     </AnimatePresence>
   );
