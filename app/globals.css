@@ -76,6 +76,12 @@
     background-attachment: fixed;
   }
 
+  @media (hover: none) and (pointer: coarse) {
+    body {
+      background-attachment: scroll;
+    }
+  }
+
   body::before {
     content: '';
     position: fixed;

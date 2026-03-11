@@ -195,7 +195,7 @@ export default function Slide5Ticket({ goTo }: Props) {
                 )}
               </div>
 
-              <div className="mt-5 rounded-[1.8rem] border border-dashed border-slate-300/80 bg-white/78 px-4 py-4">
+              <div className="mt-5 rounded-[1.8rem] border border-dashed border-slate-300/80 bg-white/[0.78] px-4 py-4">
                 <div className="flex flex-wrap items-center gap-3">
                   {sortedMains.length > 0 ? (
                     sortedMains.map((n) => (
@@ -240,8 +240,8 @@ function PlaceholderRow({ length, star = false }: { length: number; star?: boole
       {Array.from({ length }, (_, index) => (
         <div
           key={`${star ? 'star' : 'main'}-${index}`}
-          className={`flex h-12 w-12 items-center justify-center rounded-full border border-dashed border-slate-300 bg-slate-50 text-slate-300 ${
-            star ? 'rounded-[1.4rem]' : ''
+          className={`flex h-12 w-12 items-center justify-center border border-dashed border-slate-300 bg-slate-50 text-slate-300 ${
+            star ? 'rounded-[1.4rem]' : 'rounded-full'
           }`}
         >
           {star ? <Star className="h-5 w-5" /> : '•'}

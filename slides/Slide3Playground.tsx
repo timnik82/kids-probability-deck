@@ -39,7 +39,7 @@ export default function Slide3Playground({ goTo }: Props) {
                 className={`rounded-[1.6rem] border px-4 py-4 text-left transition-all ${
                   tab === id
                     ? 'border-teal-200 bg-teal-500 text-white shadow-lg shadow-teal-900/15'
-                    : 'border-white/80 bg-white/85 text-slate-700 hover:border-teal-100 hover:bg-teal-50'
+                    : 'border-white/80 bg-white/[0.85] text-slate-700 hover:border-teal-100 hover:bg-teal-50'
                 }`}
               >
                 <div className="flex items-center gap-3">
@@ -65,7 +65,7 @@ export default function Slide3Playground({ goTo }: Props) {
 
 function CoinTab() {
   const t = useTranslations('slide3');
-  const resetLabel = useTranslations('slide2')('reset');
+  const resetLabel = t('reset');
   const [results, setResults] = useState<boolean[]>([]);
 
   const flip = useCallback(() => {
@@ -148,7 +148,7 @@ function CoinTab() {
 
 function DieTab() {
   const t = useTranslations('slide3');
-  const resetLabel = useTranslations('slide2')('reset');
+  const resetLabel = t('reset');
   const [target, setTarget] = useState<'even' | 'moreThan3' | 'exactly1'>('even');
   const [results, setResults] = useState<number[]>([]);
 

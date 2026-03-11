@@ -97,7 +97,7 @@ export default function Slide0Welcome({ goTo }: Props) {
                     : 'border-white/80 bg-white text-slate-700 hover:border-teal-100 hover:bg-teal-50'
                 }`}
               >
-                Portugues
+                Português
               </button>
             </div>
           </motion.div>
@@ -114,7 +114,7 @@ export default function Slide0Welcome({ goTo }: Props) {
             </button>
             <div className="rounded-[1.4rem] border border-dashed border-slate-300/80 bg-white/65 px-5 py-4 text-sm font-bold text-slate-500">
               <span className="block font-display text-base text-slate-700">139 838 160</span>
-              <span className="block">{t('subtitle')}</span>
+              <span className="block">{t('ticketCountLabel')}</span>
             </div>
           </motion.div>
         </section>
@@ -166,8 +166,8 @@ export default function Slide0Welcome({ goTo }: Props) {
               ))}
             </div>
 
-            <div className="mt-8 rounded-[1.8rem] border border-dashed border-slate-300/80 bg-white/78 px-5 py-4">
-              <p className="text-sm font-black uppercase tracking-[0.24em] text-slate-400">{t('subtitle')}</p>
+            <div className="mt-8 rounded-[1.8rem] border border-dashed border-slate-300/80 bg-white/[0.78] px-5 py-4">
+              <p className="text-sm font-black uppercase tracking-[0.24em] text-slate-400">{t('experimentLabel')}</p>
               <div className="mt-3 flex items-center gap-3">
                 <div className="science-ball h-12 w-12 bg-white text-slate-700">?</div>
                 <div className="science-ball h-12 w-12 bg-white text-slate-700">!</div>

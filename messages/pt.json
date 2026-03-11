@@ -14,6 +14,8 @@
   "slide0": {
     "title": "Bem-vindo!",
     "subtitle": "Hoje vamos aprender o que e a probabilidade.",
+    "ticketCountLabel": "Bilhetes diferentes no jogo",
+    "experimentLabel": "Cinco numeros, duas estrelas, muitas perguntas!",
     "pickLang": "Escolhe o idioma:",
     "start": "Comecar!"
   },
@@ -51,6 +53,7 @@
     "total": "Total",
     "favorable": "Favoraveis",
     "formula": "Probabilidade = favoraveis / total",
+    "reset": "Recomecar",
     "totalBalls": "Total de bolas",
     "redBalls": "Bolas vermelhas",
     "red": "vermelho",

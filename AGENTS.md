@@ -24,6 +24,7 @@ Kids Probability Deck is a localized Next.js slide-based learning app for kids a
 - The main work is usually UI/design changes, slide interactions, and educational clarity
 - Prefer preserving the slide/deck flow and locale support when editing
 
+
 # MCPs
 
 ## When external knowledge is needed, choose the MCP source by question type.
