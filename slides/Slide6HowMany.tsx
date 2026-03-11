@@ -109,6 +109,7 @@ export default function Slide6HowMany({ goTo }: Props) {
                   <p className="mt-2 text-sm font-semibold text-slate-500">{t('mathTotal')}</p>
                 </div>
                 <button
+                  type="button"
                   onClick={() => setShowMath(!showMath)}
                   className="science-button-secondary min-h-[52px] px-5 text-sm"
                   aria-controls="slide6-math"

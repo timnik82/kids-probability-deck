@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { Check, Shuffle, Sparkles, Star, Ticket } from 'lucide-react';
 import { useDeck } from '@/lib/deck-context';
+import { MAIN_COUNT, MAIN_PICK, STAR_COUNT, STAR_PICK } from '@/lib/probability';
 
 interface Props {
   goTo: (n: number) => void;
@@ -18,7 +19,7 @@ export default function Slide5Ticket({ goTo }: Props) {
     (n: number) => {
       if (userMains.includes(n)) {
         setUserMains(userMains.filter((x) => x !== n));
-      } else if (userMains.length < 5) {
+      } else if (userMains.length < MAIN_PICK) {
         setUserMains([...userMains, n]);
       }
     },
@@ -29,7 +30,7 @@ export default function Slide5Ticket({ goTo }: Props) {
     (n: number) => {
       if (userStars.includes(n)) {
         setUserStars(userStars.filter((x) => x !== n));
-      } else if (userStars.length < 2) {
+      } else if (userStars.length < STAR_PICK) {
         setUserStars([...userStars, n]);
       }
     },
@@ -37,18 +38,18 @@ export default function Slide5Ticket({ goTo }: Props) {
   );
 
   const luckyDip = useCallback(() => {
-    const pool = Array.from({ length: 50 }, (_, i) => i + 1);
+    const pool = Array.from({ length: MAIN_COUNT }, (_, i) => i + 1);
     const mains: number[] = [];
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < MAIN_PICK; i++) {
       const idx = Math.floor(Math.random() * pool.length);
       mains.push(pool[idx]);
       pool.splice(idx, 1);
     }
     setUserMains(mains.sort((a, b) => a - b));
 
-    const starPool = Array.from({ length: 12 }, (_, i) => i + 1);
+    const starPool = Array.from({ length: STAR_COUNT }, (_, i) => i + 1);
     const stars: number[] = [];
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < STAR_PICK; i++) {
       const idx = Math.floor(Math.random() * starPool.length);
       stars.push(starPool[idx]);
       starPool.splice(idx, 1);
@@ -58,7 +59,7 @@ export default function Slide5Ticket({ goTo }: Props) {
 
   const sortedMains = [...userMains].sort((a, b) => a - b);
   const sortedStars = [...userStars].sort((a, b) => a - b);
-  const ready = userMains.length === 5 && userStars.length === 2;
+  const ready = userMains.length === MAIN_PICK && userStars.length === STAR_PICK;
 
   return (
     <div className="flex w-full justify-center py-4 sm:py-6">
@@ -66,7 +67,7 @@ export default function Slide5Ticket({ goTo }: Props) {
         <div className="text-center">
           <div className="science-kicker mx-auto">
             <Sparkles className="h-3.5 w-3.5" />
-            {userMains.length}/5 • {userStars.length}/2
+            {userMains.length}/{MAIN_PICK} • {userStars.length}/{STAR_PICK}
           </div>
           <h1 className="mt-4 font-display text-4xl font-extrabold text-slate-800 sm:text-5xl">{t('title')}</h1>
         </div>
@@ -82,17 +83,17 @@ export default function Slide5Ticket({ goTo }: Props) {
                   <div>
                     <p className="font-display text-2xl font-bold text-slate-800">{t('pickNumbers')}</p>
                     <p className="text-sm font-semibold text-slate-500">
-                      {userMains.length}/5 {t('selected')}
+                      {userMains.length}/{MAIN_PICK} {t('selected')}
                     </p>
                   </div>
                 </div>
-                <span className="science-kicker">{userMains.length}/5</span>
+                <span className="science-kicker">{userMains.length}/{MAIN_PICK}</span>
               </div>
 
               <div className="mt-5 grid grid-cols-5 gap-2 sm:grid-cols-10 sm:gap-2.5">
-                {Array.from({ length: 50 }, (_, i) => i + 1).map((n) => {
+                {Array.from({ length: MAIN_COUNT }, (_, i) => i + 1).map((n) => {
                   const isSelected = userMains.includes(n);
-                  const isDisabled = userMains.length >= 5 && !isSelected;
+                  const isDisabled = userMains.length >= MAIN_PICK && !isSelected;
 
                   return (
                     <button
@@ -104,8 +105,8 @@ export default function Slide5Ticket({ goTo }: Props) {
                       className={`science-ball aspect-square text-base transition-all sm:text-lg ${
                         isSelected
                           ? 'border-teal-200 bg-gradient-to-br from-teal-400 to-teal-600 text-white shadow-lg shadow-teal-900/15'
-                          : 'bg-white text-slate-700 hover:-translate-y-0.5 hover:border-teal-100 hover:text-teal-700'
-                      } ${isDisabled ? 'cursor-not-allowed opacity-35 hover:translate-y-0 hover:text-slate-700' : ''}`}
+                          : `bg-white text-slate-700 ${!isDisabled ? 'hover:-translate-y-0.5 hover:border-teal-100 hover:text-teal-700' : ''}`
+                      } ${isDisabled ? 'cursor-not-allowed opacity-30' : ''}`}
                     >
                       {n}
                     </button>
@@ -123,17 +124,17 @@ export default function Slide5Ticket({ goTo }: Props) {
                   <div>
                     <p className="font-display text-2xl font-bold text-slate-800">{t('pickStars')}</p>
                     <p className="text-sm font-semibold text-slate-500">
-                      {userStars.length}/2 {t('selected')}
+                      {userStars.length}/{STAR_PICK} {t('selected')}
                     </p>
                   </div>
                 </div>
-                <span className="science-kicker">{userStars.length}/2</span>
+                <span className="science-kicker">{userStars.length}/{STAR_PICK}</span>
               </div>
 
               <div className="mt-5 grid grid-cols-4 gap-3 sm:grid-cols-6">
-                {Array.from({ length: 12 }, (_, i) => i + 1).map((n) => {
+                {Array.from({ length: STAR_COUNT }, (_, i) => i + 1).map((n) => {
                   const isSelected = userStars.includes(n);
-                  const isDisabled = userStars.length >= 2 && !isSelected;
+                  const isDisabled = userStars.length >= STAR_PICK && !isSelected;
 
                   return (
                     <button
@@ -145,8 +146,8 @@ export default function Slide5Ticket({ goTo }: Props) {
                       className={`relative flex aspect-square items-center justify-center rounded-[1.6rem] border text-lg font-extrabold transition-all ${
                         isSelected
                           ? 'border-amber-200 bg-gradient-to-br from-amber-200 to-orange-300 text-amber-950 shadow-lg shadow-amber-900/10'
-                          : 'border-white/80 bg-white text-slate-700 hover:-translate-y-0.5 hover:border-amber-100 hover:bg-amber-50'
-                      } ${isDisabled ? 'cursor-not-allowed opacity-35 hover:translate-y-0 hover:bg-white' : ''}`}
+                          : `border-white/80 bg-white text-slate-700 ${!isDisabled ? 'hover:-translate-y-0.5 hover:border-amber-100 hover:bg-amber-50' : ''}`
+                      } ${isDisabled ? 'cursor-not-allowed opacity-30' : ''}`}
                     >
                       <Star className={`absolute left-2 top-2 h-3.5 w-3.5 ${isSelected ? 'fill-amber-500 text-amber-600' : 'text-slate-300'}`} />
                       {n}
@@ -187,7 +188,7 @@ export default function Slide5Ticket({ goTo }: Props) {
                 <div>
                   <p className="font-display text-2xl font-bold text-slate-800">{t('yourTicket')}</p>
                   <p className="text-sm font-semibold text-slate-500">
-                    {userMains.length}/5 • {userStars.length}/2
+                    {userMains.length}/{MAIN_PICK} • {userStars.length}/{STAR_PICK}
                   </p>
                 </div>
                 {ready && (
@@ -209,7 +210,7 @@ export default function Slide5Ticket({ goTo }: Props) {
                       </div>
                     ))
                   ) : (
-                    <PlaceholderRow length={5} />
+                    <PlaceholderRow length={MAIN_PICK} />
                   )}
                 </div>
 
@@ -224,7 +225,7 @@ export default function Slide5Ticket({ goTo }: Props) {
                       </div>
                     ))
                   ) : (
-                    <PlaceholderRow length={2} star />
+                    <PlaceholderRow length={STAR_PICK} star />
                   )}
                 </div>
               </div>

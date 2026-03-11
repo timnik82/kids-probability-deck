@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { Play, RotateCcw, Sparkles, Star } from 'lucide-react';
+import { MAIN_PICK, STAR_PICK } from '@/lib/probability';
 import { drawOnce } from '@/lib/simulate';
 
 interface Props {
@@ -109,6 +110,7 @@ export default function Slide2Draw({ goTo }: Props) {
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
               <button
+                type="button"
                 onClick={handleDraw}
                 disabled={isAnimating}
                 className="science-button-primary min-h-[58px] px-7 disabled:cursor-not-allowed disabled:opacity-60"
@@ -118,6 +120,7 @@ export default function Slide2Draw({ goTo }: Props) {
               </button>
               {drawn && (
                 <button
+                  type="button"
                   onClick={handleReset}
                   className="science-button-secondary min-h-[58px] px-6"
                 >
@@ -216,7 +219,7 @@ function MachineCard({
         <div className="mt-5 flex min-h-[112px] flex-wrap items-center justify-center gap-3">
           {isAnimating ? (
             <>
-              {Array.from({ length: tone === 'teal' ? 5 : 2 }, (_, index) => (
+              {Array.from({ length: tone === 'teal' ? MAIN_PICK : STAR_PICK }, (_, index) => (
                 <motion.div
                   key={`${tone}-ghost-${index}`}
                   className={`science-ball h-12 w-12 ${tone === 'teal' ? 'bg-teal-200 text-teal-200' : 'bg-amber-200 text-amber-200'}`}

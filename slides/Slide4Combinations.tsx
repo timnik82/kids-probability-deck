@@ -57,6 +57,7 @@ export default function Slide4Combinations({ goTo }: Props) {
 
                 return (
                   <button
+                    type="button"
                     key={n}
                     onClick={() => toggle(n)}
                     disabled={locked}
@@ -65,7 +66,7 @@ export default function Slide4Combinations({ goTo }: Props) {
                       selected
                         ? 'border-teal-200 bg-gradient-to-br from-teal-400 to-teal-600 text-white shadow-lg shadow-teal-900/15'
                         : 'bg-white text-slate-700 hover:-translate-y-0.5 hover:border-teal-100 hover:text-teal-700'
-                    } ${locked ? 'cursor-not-allowed opacity-35 hover:translate-y-0 hover:text-slate-700' : ''}`}
+                    } ${locked ? 'cursor-not-allowed opacity-30 hover:translate-y-0 hover:text-slate-700' : ''}`}
                   >
                     {n}
                   </button>
@@ -114,6 +115,7 @@ export default function Slide4Combinations({ goTo }: Props) {
                 <p className="font-display text-2xl font-bold text-slate-800">{t('allPairs')}</p>
               </div>
               <button
+                type="button"
                 onClick={() => setShowMath(!showMath)}
                 className="science-button-secondary min-h-[52px] px-5 text-sm"
                 aria-controls="slide4-math"
