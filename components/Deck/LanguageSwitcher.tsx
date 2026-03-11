@@ -20,12 +20,13 @@ export default function LanguageSwitcher() {
   };
 
   return (
-    <div className="flex gap-1 rounded-full bg-white/80 backdrop-blur p-1 shadow-md">
+    <div className="science-panel flex gap-1.5 rounded-full p-1.5">
       <button
         onClick={() => switchTo('ru')}
-        className={`px-3 py-1.5 rounded-full text-sm font-bold transition-all ${
+        aria-pressed={locale === 'ru'}
+        className={`min-w-[56px] rounded-full px-3 py-2 text-sm font-extrabold transition-all ${
           locale === 'ru'
-            ? 'bg-teal-600 text-white shadow'
+            ? 'bg-primary text-primary-foreground shadow-lg shadow-teal-900/15'
             : 'text-slate-600 hover:bg-slate-100'
         }`}
       >
@@ -33,9 +34,10 @@ export default function LanguageSwitcher() {
       </button>
       <button
         onClick={() => switchTo('pt')}
-        className={`px-3 py-1.5 rounded-full text-sm font-bold transition-all ${
+        aria-pressed={locale === 'pt'}
+        className={`min-w-[56px] rounded-full px-3 py-2 text-sm font-extrabold transition-all ${
           locale === 'pt'
-            ? 'bg-teal-600 text-white shadow'
+            ? 'bg-primary text-primary-foreground shadow-lg shadow-teal-900/15'
             : 'text-slate-600 hover:bg-slate-100'
         }`}
       >

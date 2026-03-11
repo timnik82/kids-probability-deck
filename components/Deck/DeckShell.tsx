@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback, type ReactNode } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, FlaskConical, Sparkles } from 'lucide-react';
 import { TOTAL_SLIDES, SLIDE_PARAM } from '@/lib/constants';
 import LanguageSwitcher from './LanguageSwitcher';
 import ProgressDots from './ProgressDots';
@@ -18,6 +18,7 @@ export default function DeckShell({ children }: { children: (slide: number, goTo
     TOTAL_SLIDES - 1
   );
   const [current, setCurrent] = useState(initialSlide);
+  const progress = ((current + 1) / TOTAL_SLIDES) * 100;
 
   const goTo = useCallback(
     (n: number) => {
@@ -43,41 +44,75 @@ export default function DeckShell({ children }: { children: (slide: number, goTo
   }, [prev, next]);
 
   return (
-    <div className="fixed inset-0 flex flex-col bg-gradient-to-br from-slate-50 to-teal-50 overflow-hidden">
-      <header className="flex items-center justify-between px-4 py-2 shrink-0 z-10">
-        <span className="text-sm font-medium text-slate-500">
-          {current + 1} {t('of')} {TOTAL_SLIDES}
-        </span>
-        <LanguageSwitcher />
-      </header>
+    <div className="fixed inset-0 overflow-hidden">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute left-[-5%] top-[8%] h-48 w-48 rounded-full bg-teal-200/35 blur-3xl" />
+        <div className="absolute right-[-4%] top-[18%] h-40 w-40 rounded-full bg-amber-200/45 blur-3xl" />
+        <div className="absolute bottom-[12%] left-[12%] h-28 w-28 rounded-full bg-cyan-200/40 blur-2xl" />
+      </div>
 
-      <main className="flex-1 overflow-y-auto px-4 pb-4">
-        {children(current, goTo)}
-      </main>
+      <div className="relative z-10 flex h-full flex-col px-3 pb-3 pt-3 sm:px-5 sm:pb-5 sm:pt-5">
+        <header className="science-panel mb-3 shrink-0 px-4 py-3 sm:mb-4 sm:px-6">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center gap-3">
+              <div className="science-ball h-12 w-12 bg-teal-500 text-white">
+                <FlaskConical className="h-6 w-6" />
+              </div>
+              <div>
+                <div className="science-kicker w-fit">
+                  <Sparkles className="h-3.5 w-3.5" />
+                  {Math.round(progress)}%
+                </div>
+                <p className="mt-2 font-display text-xl font-bold text-slate-800 sm:text-2xl">
+                  {current + 1} {t('of')} {TOTAL_SLIDES}
+                </p>
+              </div>
+            </div>
 
-      <footer className="shrink-0 px-4 py-3 space-y-2 bg-white/60 backdrop-blur-sm border-t border-slate-200/50">
-        <ProgressDots current={current} onDotClick={goTo} />
-        <div className="flex items-center justify-between gap-4">
-          <button
-            onClick={prev}
-            disabled={current === 0}
-            className="flex items-center gap-1 px-6 py-3 rounded-xl bg-slate-200 text-slate-700 font-bold text-lg
-              disabled:opacity-30 disabled:cursor-not-allowed hover:bg-slate-300 active:scale-95 transition-all min-w-[120px] justify-center"
-          >
-            <ChevronLeft className="w-5 h-5" />
-            {t('back')}
-          </button>
-          <button
-            onClick={next}
-            disabled={current === TOTAL_SLIDES - 1}
-            className="flex items-center gap-1 px-6 py-3 rounded-xl bg-teal-600 text-white font-bold text-lg
-              disabled:opacity-30 disabled:cursor-not-allowed hover:bg-teal-700 active:scale-95 transition-all min-w-[120px] justify-center"
-          >
-            {t('next')}
-            <ChevronRight className="w-5 h-5" />
-          </button>
-        </div>
-      </footer>
+            <div className="flex items-center gap-3">
+              <div className="hidden min-w-[180px] sm:block">
+                <div className="h-3 overflow-hidden rounded-full bg-slate-200/80">
+                  <div
+                    className="h-full rounded-full bg-gradient-to-r from-teal-500 via-cyan-400 to-amber-400 transition-all duration-300"
+                    style={{ width: `${progress}%` }}
+                  />
+                </div>
+              </div>
+              <LanguageSwitcher />
+            </div>
+          </div>
+        </header>
+
+        <main className="min-h-0 flex-1 overflow-y-auto">
+          <div className="mx-auto flex min-h-full w-full max-w-6xl">
+            {children(current, goTo)}
+          </div>
+        </main>
+
+        <footer className="science-panel mt-3 shrink-0 px-4 py-4 sm:mt-4 sm:px-6">
+          <div className="space-y-4">
+            <ProgressDots current={current} onDotClick={goTo} />
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <button
+                onClick={prev}
+                disabled={current === 0}
+                className="science-button-secondary min-h-[58px] min-w-[132px] disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                <ChevronLeft className="h-5 w-5" />
+                {t('back')}
+              </button>
+              <button
+                onClick={next}
+                disabled={current === TOTAL_SLIDES - 1}
+                className="science-button-primary min-h-[58px] min-w-[132px] disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                {t('next')}
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
+        </footer>
+      </div>
     </div>
   );
 }

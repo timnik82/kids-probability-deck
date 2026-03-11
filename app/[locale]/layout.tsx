@@ -1,5 +1,18 @@
+import { Nunito, Rubik } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { setRequestLocale, getMessages } from 'next-intl/server';
+
+const bodyFont = Nunito({
+  subsets: ['latin', 'cyrillic'],
+  variable: '--font-body',
+  weight: ['400', '600', '700', '800'],
+});
+
+const displayFont = Rubik({
+  subsets: ['latin', 'cyrillic'],
+  variable: '--font-display',
+  weight: ['500', '600', '700', '800'],
+});
 
 export function generateStaticParams() {
   return [{ locale: 'ru' }, { locale: 'pt' }];
@@ -17,7 +30,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale}>
-      <body className="font-sans">
+      <body className={`${bodyFont.variable} ${displayFont.variable} font-sans antialiased`}>
         <NextIntlClientProvider locale={locale} messages={messages}>
           {children}
         </NextIntlClientProvider>
