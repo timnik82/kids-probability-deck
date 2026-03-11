@@ -130,6 +130,7 @@
     "draws": "sorteios",
     "running": "A calcular...",
     "results": "Resultados:",
+    "noWins": "Nenhum premio desta vez.",
     "tier": "Nivel",
     "count": "Acertos",
     "jackpotNote": "O jackpot quase nunca sai, mesmo em 50 000 tentativas!"
