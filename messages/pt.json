@@ -73,6 +73,7 @@
     "sortedPick": "O mesmo bilhete",
     "allPairs": "Todos os pares possiveis (total: 10):",
     "showMath": "Mostrar matematica",
+    "hideMath": "Esconder matematica",
     "mathExplain": "C(5,2) = 5! / (2! x 3!) = 10",
     "sameTicket": "E o mesmo bilhete!"
   },
@@ -92,6 +93,7 @@
     "total": "Total de bilhetes diferentes:",
     "totalSimple": "Sao 139 milhoes de combinacoes diferentes!",
     "showMath": "Mostrar matematica",
+    "hideMath": "Esconder matematica",
     "mathC50": "C(50,5) = 2 118 760",
     "mathC12": "C(12,2) = 66",
     "mathTotal": "2 118 760 x 66 = 139 838 160"

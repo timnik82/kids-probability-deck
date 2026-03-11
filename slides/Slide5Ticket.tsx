@@ -96,6 +96,7 @@ export default function Slide5Ticket({ goTo }: Props) {
 
                   return (
                     <button
+                      type="button"
                       key={n}
                       onClick={() => toggleMain(n)}
                       disabled={isDisabled}
@@ -136,6 +137,7 @@ export default function Slide5Ticket({ goTo }: Props) {
 
                   return (
                     <button
+                      type="button"
                       key={n}
                       onClick={() => toggleStar(n)}
                       disabled={isDisabled}
@@ -167,7 +169,7 @@ export default function Slide5Ticket({ goTo }: Props) {
                 </div>
               </div>
 
-              <button onClick={luckyDip} className="science-button-primary mt-5 min-h-[58px] w-full">
+              <button type="button" onClick={luckyDip} className="science-button-primary mt-5 min-h-[58px] w-full">
                 <Shuffle className="h-5 w-5" />
                 {t('luckyDip')}
               </button>

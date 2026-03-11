@@ -111,9 +111,12 @@ export default function Slide6HowMany({ goTo }: Props) {
                 <button
                   onClick={() => setShowMath(!showMath)}
                   className="science-button-secondary min-h-[52px] px-5 text-sm"
+                  aria-controls="slide6-math"
+                  aria-expanded={showMath}
+                  aria-label={showMath ? t('hideMath') : t('showMath')}
                 >
                   {showMath ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                  {t('showMath')}
+                  {showMath ? t('hideMath') : t('showMath')}
                 </button>
               </div>
 
@@ -128,6 +131,7 @@ export default function Slide6HowMany({ goTo }: Props) {
               <AnimatePresence initial={false}>
                 {showMath && (
                   <motion.div
+                    id="slide6-math"
                     className="mt-5 rounded-[1.6rem] bg-slate-900 px-5 py-4 font-mono text-sm text-teal-300"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}

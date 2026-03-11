@@ -3,13 +3,13 @@ import { NextIntlClientProvider } from 'next-intl';
 import { setRequestLocale, getMessages } from 'next-intl/server';
 
 const bodyFont = Nunito({
-  subsets: ['latin', 'cyrillic'],
+  subsets: ['latin'],
   variable: '--font-body',
   weight: ['400', '600', '700', '800'],
 });
 
 const displayFont = Rubik({
-  subsets: ['latin', 'cyrillic'],
+  subsets: ['latin'],
   variable: '--font-display',
   weight: ['500', '600', '700', '800'],
 });

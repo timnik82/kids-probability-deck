@@ -228,7 +228,7 @@ function MachineCard({
               ))}
             </>
           ) : (
-            <AnimatePresence initial={false}>
+            <AnimatePresence>
               {values.length > 0 ? (
                 values.map((value, index) =>
                   tone === 'teal' ? (

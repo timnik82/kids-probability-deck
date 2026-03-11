@@ -94,7 +94,9 @@ export default function Slide4Combinations({ goTo }: Props) {
                     <p className="font-display text-2xl font-bold text-slate-800">
                       {picked[0]}-{picked[1]} = {pickedSorted[0]}-{pickedSorted[1]}
                     </p>
-                    <p className="mt-1 text-sm font-semibold text-teal-700">{t('sameTicket')}</p>
+                    {picked[0] !== pickedSorted[0] && (
+                      <p className="mt-1 text-sm font-semibold text-teal-700">{t('sameTicket')}</p>
+                    )}
                   </div>
                 </motion.div>
               ) : (
@@ -110,14 +112,15 @@ export default function Slide4Combinations({ goTo }: Props) {
             <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <p className="font-display text-2xl font-bold text-slate-800">{t('allPairs')}</p>
-                <p className="mt-2 text-sm font-semibold text-slate-500">{t('mathExplain')}</p>
               </div>
               <button
                 onClick={() => setShowMath(!showMath)}
                 className="science-button-secondary min-h-[52px] px-5 text-sm"
+                aria-controls="slide4-math"
+                aria-expanded={showMath}
               >
                 {showMath ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                {t('showMath')}
+                {showMath ? t('hideMath') : t('showMath')}
               </button>
             </div>
 
@@ -142,6 +145,7 @@ export default function Slide4Combinations({ goTo }: Props) {
             <AnimatePresence initial={false}>
               {showMath && (
                 <motion.div
+                  id="slide4-math"
                   className="mt-5 rounded-[1.6rem] bg-slate-900 px-5 py-4 font-mono text-sm text-teal-300"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -167,7 +171,11 @@ function PairCard({
   tone: 'slate' | 'teal';
   values: number[];
 }) {
-  const display = values.length === 2 ? values : [null, null];
+  const display = values.length === 2 
+    ? values 
+    : values.length === 1 
+      ? [values[0], null] 
+      : [null, null];
 
   return (
     <div className={`rounded-[1.5rem] border px-4 py-4 ${tone === 'teal' ? 'border-teal-100 bg-teal-50/80' : 'border-slate-200/80 bg-slate-50/80'}`}>
@@ -176,7 +184,7 @@ function PairCard({
         {display.map((value, index) => (
           <div
             key={`${title}-${index}`}
-            className={`science-ball h-12 w-12 ${value !== null && tone === 'teal' ? 'bg-teal-500 text-white' : 'bg-white text-slate-400'}`}
+            className={`science-ball h-12 w-12 ${value !== null ? (tone === 'teal' ? 'bg-teal-500 text-white' : 'bg-slate-600 text-white') : 'bg-white text-slate-400'}`}
           >
             {value ?? '?'}
           </div>

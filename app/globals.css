@@ -69,20 +69,22 @@
   body {
     @apply bg-background text-foreground;
     min-height: 100vh;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
     background-image:
       radial-gradient(circle at top left, rgba(45, 212, 191, 0.18), transparent 26%),
       radial-gradient(circle at top right, rgba(251, 191, 36, 0.18), transparent 20%),
       linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(255, 248, 235, 0.9));
-    background-attachment: fixed;
+    pointer-events: none;
+    z-index: -2;
   }
 
-  @media (hover: none) and (pointer: coarse) {
-    body {
-      background-attachment: scroll;
-    }
-  }
-
-  body::before {
+  body::after {
     content: '';
     position: fixed;
     inset: 0;
