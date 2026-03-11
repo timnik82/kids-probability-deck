@@ -3,7 +3,7 @@
 import type { ReactNode } from 'react';
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { Eye, EyeOff, Sparkles, Star } from 'lucide-react';
 import { comb, MAIN_COUNT, MAIN_PICK, STAR_COUNT, STAR_PICK, TOTAL_OUTCOMES } from '@/lib/probability';
 
@@ -13,17 +13,19 @@ interface Props {
 
 export default function Slide6HowMany({ goTo }: Props) {
   const t = useTranslations('slide6');
+  const locale = useLocale();
   const [showMath, setShowMath] = useState(false);
 
   const waysMain = comb(MAIN_COUNT, MAIN_PICK);
   const waysStar = comb(STAR_COUNT, STAR_PICK);
+  const numberFormatter = new Intl.NumberFormat(locale);
 
   return (
     <div className="flex w-full justify-center py-4 sm:py-6">
       <div className="w-full max-w-6xl space-y-5">
         <div className="text-center">
           <div className="science-kicker mx-auto">
-            <Sparkles className="h-3.5 w-3.5" />
+            <Sparkles aria-hidden="true" focusable={false} className="h-3.5 w-3.5" />
             {t('multiply')}
           </div>
           <h1 className="mt-4 font-display text-4xl font-extrabold text-slate-800 sm:text-5xl">{t('title')}</h1>
@@ -34,10 +36,10 @@ export default function Slide6HowMany({ goTo }: Props) {
             <RevealCard
               delay={0.08}
               label={t('waysNumbers')}
-              value={waysMain.toLocaleString()}
+              value={numberFormatter.format(waysMain)}
               tone="teal"
             >
-              <div className="mt-4 flex flex-wrap gap-2">
+              <div className="mt-4 flex flex-wrap gap-2" aria-hidden="true">
                 {Array.from({ length: MAIN_PICK }, (_, index) => (
                   <div
                     key={`main-ball-${index}`}
@@ -50,6 +52,7 @@ export default function Slide6HowMany({ goTo }: Props) {
             </RevealCard>
 
             <motion.div
+              aria-hidden="true"
               className="science-kicker mx-auto"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -61,13 +64,13 @@ export default function Slide6HowMany({ goTo }: Props) {
             <RevealCard
               delay={0.28}
               label={t('waysStars')}
-              value={waysStar.toLocaleString()}
+              value={numberFormatter.format(waysStar)}
               tone="amber"
             >
-              <div className="mt-4 flex flex-wrap gap-3">
+              <div className="mt-4 flex flex-wrap gap-3" aria-hidden="true">
                 {Array.from({ length: STAR_PICK }, (_, index) => (
                   <div key={`star-ball-${index}`} className="relative flex h-12 w-12 items-center justify-center">
-                    <Star className="absolute h-full w-full fill-amber-300 text-amber-400" />
+                    <Star aria-hidden="true" focusable={false} className="absolute h-full w-full fill-amber-300 text-amber-400" />
                     <span className="relative z-10 font-display text-base font-extrabold text-amber-950">{index + 1}</span>
                   </div>
                 ))}
@@ -75,6 +78,7 @@ export default function Slide6HowMany({ goTo }: Props) {
             </RevealCard>
 
             <motion.div
+              aria-hidden="true"
               className="science-kicker mx-auto"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -92,7 +96,7 @@ export default function Slide6HowMany({ goTo }: Props) {
               <div className="absolute inset-x-8 -top-3 h-10 rounded-full bg-white/30 blur-2xl" />
               <p className="text-sm font-black uppercase tracking-[0.2em] text-teal-100">{t('total')}</p>
               <p className="mt-3 font-display text-5xl font-extrabold leading-none text-white sm:text-6xl">
-                {TOTAL_OUTCOMES.toLocaleString()}
+                {numberFormatter.format(TOTAL_OUTCOMES)}
               </p>
               <p className="mt-4 max-w-xl text-base font-semibold leading-7 text-teal-50">{t('totalSimple')}</p>
             </motion.div>
@@ -116,16 +120,20 @@ export default function Slide6HowMany({ goTo }: Props) {
                   aria-expanded={showMath}
                   aria-label={showMath ? t('hideMath') : t('showMath')}
                 >
-                  {showMath ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                  {showMath ? (
+                    <EyeOff aria-hidden="true" focusable={false} className="h-4 w-4" />
+                  ) : (
+                    <Eye aria-hidden="true" focusable={false} className="h-4 w-4" />
+                  )}
                   {showMath ? t('hideMath') : t('showMath')}
                 </button>
               </div>
 
               <div className="mt-6 rounded-[1.8rem] border border-dashed border-slate-300/80 bg-white/[0.8] px-4 py-5">
                 <div className="grid gap-4">
-                  <EquationRow label={`C(${MAIN_COUNT},${MAIN_PICK})`} value={waysMain.toLocaleString()} tone="teal" />
-                  <EquationRow label={`C(${STAR_COUNT},${STAR_PICK})`} value={waysStar.toLocaleString()} tone="amber" />
-                  <EquationRow label={t('total')} value={TOTAL_OUTCOMES.toLocaleString()} tone="slate" />
+                  <EquationRow label={`C(${MAIN_COUNT},${MAIN_PICK})`} value={numberFormatter.format(waysMain)} tone="teal" />
+                  <EquationRow label={`C(${STAR_COUNT},${STAR_PICK})`} value={numberFormatter.format(waysStar)} tone="amber" />
+                  <EquationRow label={t('total')} value={numberFormatter.format(TOTAL_OUTCOMES)} tone="slate" />
                 </div>
               </div>
 

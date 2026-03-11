@@ -176,11 +176,6 @@ export default function Slide11Quiz({ goTo }: Props) {
                   let optionClass = 'border-white/80 bg-white/80 hover:-translate-y-0.5 hover:border-teal-100 hover:bg-teal-50';
                   let badgeClass = 'bg-slate-100 text-slate-500';
 
-                  if (!showResult && isSelected) {
-                    optionClass = 'border-teal-200 bg-teal-50';
-                    badgeClass = 'bg-teal-500 text-white';
-                  }
-
                   if (showResult && isCorrect) {
                     optionClass = 'border-emerald-200 bg-gradient-to-br from-emerald-50 to-white shadow-[0_16px_30px_rgba(16,185,129,0.12)]';
                     badgeClass = 'bg-emerald-500 text-white';

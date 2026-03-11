@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import * as RechartsPrimitive from 'recharts';
+import { useLocale } from 'next-intl';
 
 import { cn } from '@/lib/utils';
 
@@ -132,6 +133,8 @@ const ChartTooltipContent = React.forwardRef<
     ref
   ) => {
     const { config } = useChart();
+    const locale = useLocale();
+    const numberFormatter = React.useMemo(() => new Intl.NumberFormat(locale), [locale]);
 
     const tooltipLabel = React.useMemo(() => {
       if (hideLabel || !payload?.length) {
@@ -240,7 +243,7 @@ const ChartTooltipContent = React.forwardRef<
                       </div>
                       {item.value && (
                         <span className="font-mono font-medium tabular-nums text-foreground">
-                          {item.value.toLocaleString()}
+                          {numberFormatter.format(Number(item.value))}
                         </span>
                       )}
                     </div>

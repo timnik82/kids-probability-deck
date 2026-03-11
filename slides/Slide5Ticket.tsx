@@ -7,11 +7,7 @@ import { Check, Shuffle, Sparkles, Star, Ticket } from 'lucide-react';
 import { useDeck } from '@/lib/deck-context';
 import { MAIN_COUNT, MAIN_PICK, STAR_COUNT, STAR_PICK } from '@/lib/probability';
 
-interface Props {
-  goTo: (n: number) => void;
-}
-
-export default function Slide5Ticket({ goTo }: Props) {
+export default function Slide5Ticket() {
   const t = useTranslations('slide5');
   const { userMains, userStars, setUserMains, setUserStars } = useDeck();
 

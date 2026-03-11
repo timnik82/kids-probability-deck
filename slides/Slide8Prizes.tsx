@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { Sparkles, Star, Trophy } from 'lucide-react';
 import { PRIZE_TIERS, oddsString, isPrizeTier } from '@/lib/probability';
 
@@ -12,6 +12,7 @@ interface Props {
 
 export default function Slide8Prizes({ goTo }: Props) {
   const t = useTranslations('slide8');
+  const locale = useLocale();
   const [mainK, setMainK] = useState(5);
   const [starS, setStarS] = useState(2);
   const hasPrize = isPrizeTier(mainK, starS);
@@ -108,7 +109,7 @@ export default function Slide8Prizes({ goTo }: Props) {
 
               <div className="mt-5 rounded-[1.8rem] border border-dashed border-slate-300/80 bg-white/80 px-4 py-5 text-center">
                 {hasPrize ? (
-                  <p className="font-display text-4xl font-extrabold text-teal-700 sm:text-5xl">{oddsString(mainK, starS)}</p>
+                  <p className="font-display text-4xl font-extrabold text-teal-700 sm:text-5xl">{oddsString(mainK, starS, locale)}</p>
                 ) : (
                   <p className="text-xl font-extrabold text-slate-400">{t('noPrize')}</p>
                 )}
@@ -135,7 +136,7 @@ export default function Slide8Prizes({ goTo }: Props) {
                       >
                         <td className="py-3 font-display text-lg font-bold text-teal-700">{k}</td>
                         <td className="py-3 font-display text-lg font-bold text-amber-600">{s}</td>
-                        <td className="py-3 text-right font-mono font-semibold text-slate-700">{oddsString(k, s)}</td>
+                        <td className="py-3 text-right font-mono font-semibold text-slate-700">{oddsString(k, s, locale)}</td>
                       </tr>
                     ))}
                   </tbody>

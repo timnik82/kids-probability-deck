@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useTranslations } from 'next-intl';
 import { Play, RotateCcw, Sparkles, Star } from 'lucide-react';
 import { MAIN_PICK, STAR_PICK } from '@/lib/probability';
@@ -18,6 +18,7 @@ export default function Slide2Draw({ goTo }: Props) {
   const [drawn, setDrawn] = useState<DrawResult>(null);
   const [isAnimating, setIsAnimating] = useState(false);
   const timeoutRef = useRef<number | null>(null);
+  const shouldReduceMotion = useReducedMotion() ?? false;
 
   const handleDraw = useCallback(() => {
     if (timeoutRef.current) {
@@ -98,12 +99,14 @@ export default function Slide2Draw({ goTo }: Props) {
                 label={t('numbersLabel')}
                 values={sortedMains}
                 isAnimating={isAnimating}
+                shouldReduceMotion={shouldReduceMotion}
                 tone="teal"
               />
               <MachineCard
                 label={t('starsLabel')}
                 values={sortedStars}
                 isAnimating={isAnimating}
+                shouldReduceMotion={shouldReduceMotion}
                 tone="amber"
               />
             </div>
@@ -151,7 +154,7 @@ export default function Slide2Draw({ goTo }: Props) {
                 </div>
               </div>
 
-              <div className="mt-5 space-y-4">
+              <div className="mt-5 space-y-4" aria-live="polite" aria-atomic="true">
                 <ReadoutRow
                   label={t('numbersLabel')}
                   values={sortedMains}
@@ -185,11 +188,13 @@ export default function Slide2Draw({ goTo }: Props) {
 function MachineCard({
   isAnimating,
   label,
+  shouldReduceMotion,
   tone,
   values,
 }: {
   isAnimating: boolean;
   label: string;
+  shouldReduceMotion: boolean;
   tone: 'amber' | 'teal';
   values: number[];
 }) {
@@ -223,8 +228,12 @@ function MachineCard({
                 <motion.div
                   key={`${tone}-ghost-${index}`}
                   className={`science-ball h-12 w-12 ${tone === 'teal' ? 'bg-teal-200 text-teal-200' : 'bg-amber-200 text-amber-200'}`}
-                  animate={{ y: [0, -8, 0], opacity: [0.65, 1, 0.65] }}
-                  transition={{ duration: 0.45, repeat: Infinity, delay: index * 0.08 }}
+                  animate={shouldReduceMotion ? { opacity: 0.9 } : { y: [0, -8, 0], opacity: [0.65, 1, 0.65] }}
+                  transition={
+                    shouldReduceMotion
+                      ? { duration: 0.2 }
+                      : { duration: 0.45, repeat: Infinity, delay: index * 0.08 }
+                  }
                 >
                   •
                 </motion.div>
@@ -238,9 +247,14 @@ function MachineCard({
                     <motion.div
                       key={`main-${value}`}
                       className="science-ball h-12 w-12 bg-gradient-to-br from-teal-400 to-teal-600 text-lg text-white"
-                      initial={{ opacity: 0, y: -18, scale: 0.75 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      transition={{ delay: index * 0.08, type: 'spring', stiffness: 260, damping: 18 }}
+                      initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -18, scale: 0.75 }}
+                      animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
+                      exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.8, y: 10 }}
+                      transition={
+                        shouldReduceMotion
+                          ? { duration: 0.15, delay: index * 0.04 }
+                          : { delay: index * 0.08, type: 'spring', stiffness: 260, damping: 18 }
+                      }
                     >
                       {value}
                     </motion.div>
@@ -248,9 +262,14 @@ function MachineCard({
                     <motion.div
                       key={`star-${value}`}
                       className="relative flex h-14 w-14 items-center justify-center"
-                      initial={{ opacity: 0, scale: 0.7, rotate: -20 }}
-                      animate={{ opacity: 1, scale: 1, rotate: index === 0 ? -8 : 8 }}
-                      transition={{ delay: 0.12 + index * 0.08, type: 'spring', stiffness: 220, damping: 15 }}
+                      initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.7, rotate: -20 }}
+                      animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, scale: 1, rotate: index === 0 ? -8 : 8 }}
+                      exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.8, rotate: 0 }}
+                      transition={
+                        shouldReduceMotion
+                          ? { duration: 0.15, delay: 0.06 + index * 0.04 }
+                          : { delay: 0.12 + index * 0.08, type: 'spring', stiffness: 220, damping: 15 }
+                      }
                     >
                       <Star className="absolute h-full w-full fill-amber-300 text-amber-400 drop-shadow-[0_10px_18px_rgba(245,158,11,0.24)]" />
                       <span className="relative z-10 font-display text-lg font-extrabold text-amber-950">{value}</span>

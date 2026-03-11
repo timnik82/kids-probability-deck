@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { Building, Globe, Sparkles, Users } from 'lucide-react';
 import { TOTAL_OUTCOMES } from '@/lib/probability';
 
@@ -15,9 +15,11 @@ const STOP_LABELS_KEY = ['small', 'medium', 'large', 'huge'] as const;
 
 export default function Slide7Jackpot({ goTo }: Props) {
   const t = useTranslations('slide7');
+  const locale = useLocale();
   const [stopIndex, setStopIndex] = useState(0);
   const value = STOPS[stopIndex];
   void goTo;
+  const numberFormatter = new Intl.NumberFormat(locale);
 
   const icons = [
     <span key="cards" className="text-4xl">🃏</span>,
@@ -50,7 +52,7 @@ export default function Slide7Jackpot({ goTo }: Props) {
               <div className="absolute inset-x-8 -top-4 h-12 rounded-full bg-white/25 blur-3xl" />
               <p className="text-sm font-black uppercase tracking-[0.22em] text-teal-100">{t('chance')}</p>
               <p className="mt-4 font-display text-4xl font-extrabold leading-none text-white sm:text-5xl">
-                {t('oneIn')} {value.toLocaleString()}
+                {t('oneIn')} {numberFormatter.format(value)}
               </p>
             </motion.div>
 
@@ -58,9 +60,9 @@ export default function Slide7Jackpot({ goTo }: Props) {
               <div className="flex items-center justify-between gap-3">
                 <div>
                   <p className="font-display text-2xl font-bold text-slate-800">{t('sliderLabel')}</p>
-                  <p className="mt-1 text-sm font-semibold text-slate-500">{value.toLocaleString()}</p>
+                  <p className="mt-1 text-sm font-semibold text-slate-500">{numberFormatter.format(value)}</p>
                 </div>
-                <div className="science-kicker">{value.toLocaleString()}</div>
+                <div className="science-kicker">{numberFormatter.format(value)}</div>
               </div>
 
               <div className="mt-5">
@@ -75,7 +77,7 @@ export default function Slide7Jackpot({ goTo }: Props) {
                 />
                 <div className="mt-3 flex justify-between text-[10px] font-bold tracking-[0.08em] text-slate-400 sm:text-xs">
                   {STOPS.map((stop) => (
-                    <span key={`tick-${stop}`}>{stop.toLocaleString()}</span>
+                    <span key={`tick-${stop}`}>{numberFormatter.format(stop)}</span>
                   ))}
                 </div>
               </div>

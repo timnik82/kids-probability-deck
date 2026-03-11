@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { CalendarDays, Equal, Shuffle, Sparkles, Star, Users } from 'lucide-react';
 import { TOTAL_OUTCOMES } from '@/lib/probability';
 
@@ -38,10 +38,12 @@ const SHARE_PATTERNS = {
 
 export default function Slide10Special({ goTo }: Props) {
   const t = useTranslations('slide10');
+  const locale = useLocale();
   const [mode, setMode] = useState<'birthday' | 'random'>('birthday');
   void goTo;
+  const numberFormatter = new Intl.NumberFormat(locale);
 
-  const odds = `1 : ${TOTAL_OUTCOMES.toLocaleString()}`;
+  const odds = `1 : ${numberFormatter.format(TOTAL_OUTCOMES)}`;
 
   return (
     <div className="flex w-full justify-center py-4 sm:py-6">

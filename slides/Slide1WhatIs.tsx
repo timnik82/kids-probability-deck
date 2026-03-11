@@ -93,7 +93,7 @@ export default function Slide1WhatIs({ goTo }: Props) {
                   <Ticket className="h-5 w-5" />
                 </div>
               }
-              title={t('title')}
+              title={t('ticket')}
               description={t('p4')}
               badge="?"
             />

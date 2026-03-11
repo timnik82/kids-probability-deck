@@ -2,7 +2,7 @@
 
 import { useCallback, useState } from 'react';
 import { motion } from 'framer-motion';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { ArrowLeft, Play, Sparkles, Star } from 'lucide-react';
 import { BarChart, Bar, CartesianGrid, Cell, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import { useDeck } from '@/lib/deck-context';
@@ -15,10 +15,12 @@ interface Props {
 
 export default function Slide9Simulation({ goTo }: Props) {
   const t = useTranslations('slide9');
+  const locale = useLocale();
   const { userMains, userStars } = useDeck();
   const [results, setResults] = useState<SimResult | null>(null);
   const [running, setRunning] = useState(false);
   const [drawCount, setDrawCount] = useState(0);
+  const numberFormatter = new Intl.NumberFormat(locale);
 
   const hasTicket = userMains.length === 5 && userStars.length === 2;
 
@@ -105,7 +107,7 @@ export default function Slide9Simulation({ goTo }: Props) {
                       className="science-button-primary min-h-[58px] w-full disabled:cursor-not-allowed disabled:opacity-50"
                     >
                       <Play className="h-4 w-4" />
-                      {count.toLocaleString()} {t('draws')}
+                      {numberFormatter.format(count)} {t('draws')}
                     </button>
                   ))}
                 </div>
@@ -148,7 +150,7 @@ export default function Slide9Simulation({ goTo }: Props) {
               {results && !running && (
                 <div className="science-panel bg-amber-50/85 px-5 py-4">
                   <p className="text-sm font-black uppercase tracking-[0.2em] text-amber-700">{t('draws')}</p>
-                  <p className="mt-2 font-display text-3xl font-extrabold text-slate-800">{drawCount.toLocaleString()}</p>
+                  <p className="mt-2 font-display text-3xl font-extrabold text-slate-800">{numberFormatter.format(drawCount)}</p>
                   <p className="mt-3 text-sm font-semibold leading-6 text-amber-900">{t('jackpotNote')}</p>
                 </div>
               )}
@@ -163,7 +165,7 @@ export default function Slide9Simulation({ goTo }: Props) {
                   <div>
                     <p className="font-display text-2xl font-bold text-slate-800">{t('results')}</p>
                     <p className="text-sm font-semibold text-slate-500">
-                      {results && !running ? `${drawCount.toLocaleString()} ${t('draws')}` : t('desc')}
+                      {results && !running ? `${numberFormatter.format(drawCount)} ${t('draws')}` : t('desc')}
                     </p>
                   </div>
                   <div className="science-kicker">{chartData.length}</div>

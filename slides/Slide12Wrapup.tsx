@@ -52,7 +52,7 @@ export default function Slide12Wrapup({ goTo }: Props) {
                 <div className="flex items-center justify-between gap-3">
                   <div>
                     <p className="text-sm font-black uppercase tracking-[0.22em] text-white/80">5 + 2</p>
-                    <p className="mt-2 font-display text-2xl font-bold text-white">{t('title')}</p>
+                    <p className="mt-2 font-display text-2xl font-bold text-white">{t('ticketLabel')}</p>
                   </div>
                   <div className="science-ball h-16 w-16 bg-white text-amber-500">
                     <Star className="h-7 w-7 fill-current" />
