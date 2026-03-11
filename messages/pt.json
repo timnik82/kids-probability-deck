@@ -70,6 +70,7 @@
     "desc": "Na lotaria, 1-2 e 2-1 sao a mesma coisa.",
     "pickTwo": "Escolhe 2 numeros de 5:",
     "yourPick": "A tua escolha",
+    "sortedPick": "O mesmo bilhete",
     "allPairs": "Todos os pares possiveis (total: 10):",
     "showMath": "Mostrar matematica",
     "mathExplain": "C(5,2) = 5! / (2! x 3!) = 10",
