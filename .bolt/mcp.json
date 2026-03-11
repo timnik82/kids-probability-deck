@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "context7": {
+      "enabled": true
+    },
+    "github": {
+      "enabled": true
+    },
+    "exa": {
+      "enabled": true
+    },
+    "ref": {
+      "enabled": true
+    }
+  }
+}
