@@ -11,6 +11,7 @@ Use icons from lucide-react for logos.
 ### When external knowledge is needed, choose the MCP source by question type.
 
 Use `Context7` for known libraries, frameworks, or SDKs when the task is implementation-specific and you want package-scoped docs and examples quickly. Use `Ref` when you need authoritative documentation, exact API behavior, or the correct official page and section. Use `EXA` when the task is broader or more exploratory, including web discovery, current information, comparisons, cross-source code examples, or multi-source research.
+
 ### Selection rules:
 1. Known package + “how do I implement/configure this?” -> `Context7`
 2. “Find the official docs / exact API behavior / standards guidance” -> `Ref`

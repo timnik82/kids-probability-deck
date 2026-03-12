@@ -35,7 +35,7 @@ export default function SlideRenderer({ current, goTo }: SlideRendererProps) {
         animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0, x: -40 }}
         transition={{ duration: 0.25, ease: 'easeInOut' }}
-        className="h-full flex flex-col items-center"
+        className="flex min-h-full w-full flex-col items-center"
       >
         <Suspense fallback={null}>
           <SlideComponent goTo={goTo} />

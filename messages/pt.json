@@ -14,6 +14,8 @@
   "slide0": {
     "title": "Bem-vindo!",
     "subtitle": "Hoje vamos aprender o que e a probabilidade.",
+    "ticketCountLabel": "Bilhetes diferentes no jogo",
+    "experimentLabel": "Cinco numeros, duas estrelas, muitas perguntas!",
     "pickLang": "Escolhe o idioma:",
     "start": "Comecar!"
   },
@@ -24,7 +26,8 @@
     "p3": "E mais 2 estrelas de 1 a 12.",
     "p4": "Depois, uma maquina escolhe numeros ao acaso. Se coincidirem — ganhas!",
     "numbers": "Numeros",
-    "stars": "Estrelas"
+    "stars": "Estrelas",
+    "ticket": "Bilhete"
   },
   "slide2": {
     "title": "Como funciona o sorteio?",
@@ -51,6 +54,7 @@
     "total": "Total",
     "favorable": "Favoraveis",
     "formula": "Probabilidade = favoraveis / total",
+    "reset": "Recomecar",
     "totalBalls": "Total de bolas",
     "redBalls": "Bolas vermelhas",
     "red": "vermelho",
@@ -67,8 +71,10 @@
     "desc": "Na lotaria, 1-2 e 2-1 sao a mesma coisa.",
     "pickTwo": "Escolhe 2 numeros de 5:",
     "yourPick": "A tua escolha",
+    "sortedPick": "O mesmo bilhete",
     "allPairs": "Todos os pares possiveis (total: 10):",
     "showMath": "Mostrar matematica",
+    "hideMath": "Esconder matematica",
     "mathExplain": "C(5,2) = 5! / (2! x 3!) = 10",
     "sameTicket": "E o mesmo bilhete!"
   },
@@ -88,6 +94,7 @@
     "total": "Total de bilhetes diferentes:",
     "totalSimple": "Sao 139 milhoes de combinacoes diferentes!",
     "showMath": "Mostrar matematica",
+    "hideMath": "Esconder matematica",
     "mathC50": "C(50,5) = 2 118 760",
     "mathC12": "C(12,2) = 66",
     "mathTotal": "2 118 760 x 66 = 139 838 160"
@@ -124,6 +131,7 @@
     "draws": "sorteios",
     "running": "A calcular...",
     "results": "Resultados:",
+    "noWins": "Nenhum premio desta vez.",
     "tier": "Nivel",
     "count": "Acertos",
     "jackpotNote": "O jackpot quase nunca sai, mesmo em 50 000 tentativas!"
@@ -183,6 +191,7 @@
   "slide12": {
     "title": "Resumo!",
     "learned": "Hoje aprendemos:",
+    "ticketLabel": "Bilhete exemplo",
     "point1": "Probabilidade e resultados favoraveis a dividir por todos.",
     "point2": "Na lotaria a ordem nao importa — sao combinacoes.",
     "point3": "Existem 139 838 160 bilhetes diferentes.",

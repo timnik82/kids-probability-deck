@@ -29,11 +29,11 @@ export function probability(k: number, s: number): number {
   return ways(k, s) / TOTAL_OUTCOMES;
 }
 
-export function oddsString(k: number, s: number): string {
+export function oddsString(k: number, s: number, locale?: string): string {
   const p = probability(k, s);
   if (p === 0) return '-';
   const odds = Math.round(1 / p);
-  return `1 : ${odds.toLocaleString()}`;
+  return `1 : ${new Intl.NumberFormat(locale).format(odds)}`;
 }
 
 export const PRIZE_TIERS: [number, number][] = [
