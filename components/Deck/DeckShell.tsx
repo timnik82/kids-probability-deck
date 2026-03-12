@@ -47,8 +47,8 @@ export default function DeckShell({ children }: { children: (slide: number, goTo
     <div className="fixed inset-0 overflow-hidden">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-[-4%] top-[8%] h-40 w-40 rounded-full bg-teal-200/30 blur-3xl" />
-        <div className="absolute right-[-3%] top-[18%] h-32 w-32 rounded-full bg-amber-200/38 blur-3xl" />
-        <div className="absolute bottom-[13%] left-[12%] h-24 w-24 rounded-full bg-cyan-200/34 blur-2xl" />
+        <div className="absolute right-[-3%] top-[18%] h-32 w-32 rounded-full bg-amber-200/[.38] blur-3xl" />
+        <div className="absolute bottom-[13%] left-[12%] h-24 w-24 rounded-full bg-cyan-200/[.34] blur-2xl" />
       </div>
 
       <div className="relative z-10 flex h-full flex-col px-3 pb-2 pt-2 sm:px-4 sm:pb-4 sm:pt-4">

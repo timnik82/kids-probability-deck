@@ -103,8 +103,8 @@ export default function Slide6HowMany({ goTo }: Props) {
           </section>
 
           <aside className="science-panel overflow-visible px-4 py-4 sm:px-5 sm:py-5">
-            <div className="absolute left-8 top-8 h-20 w-20 rounded-full bg-teal-200/38 blur-3xl" />
-            <div className="absolute right-8 top-10 h-20 w-20 rounded-full bg-amber-200/38 blur-3xl" />
+            <div className="absolute left-8 top-8 h-20 w-20 rounded-full bg-teal-200/[.38] blur-3xl" />
+            <div className="absolute right-8 top-10 h-20 w-20 rounded-full bg-amber-200/[.38] blur-3xl" />
 
             <div className="relative">
               <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">

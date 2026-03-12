@@ -157,8 +157,8 @@ export default function Slide9Simulation({ goTo }: Props) {
             </section>
 
             <section className="science-panel overflow-visible px-4 py-4 sm:px-5 sm:py-5">
-              <div className="absolute left-8 top-8 h-20 w-20 rounded-full bg-teal-200/36 blur-3xl" />
-              <div className="absolute right-8 top-8 h-20 w-20 rounded-full bg-amber-200/34 blur-3xl" />
+              <div className="absolute left-8 top-8 h-20 w-20 rounded-full bg-teal-200/[.36] blur-3xl" />
+              <div className="absolute right-8 top-8 h-20 w-20 rounded-full bg-amber-200/[.34] blur-3xl" />
 
               <div className="relative">
                 <div className="flex items-center justify-between gap-3">

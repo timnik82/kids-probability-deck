@@ -20,7 +20,7 @@ export default function LanguageSwitcher() {
   };
 
   return (
-    <div className="flex gap-1.5 rounded-full bg-white/82 p-1.5 shadow-sm ring-1 ring-slate-200/80">
+    <div className="flex gap-1.5 rounded-full bg-white/[.82] p-1.5 shadow-sm ring-1 ring-slate-200/80">
       <button
         onClick={() => switchTo('ru')}
         aria-pressed={locale === 'ru'}

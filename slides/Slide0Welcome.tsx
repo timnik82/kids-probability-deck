@@ -120,7 +120,7 @@ export default function Slide0Welcome({ goTo }: Props) {
         </section>
 
         <motion.aside
-          className="science-panel min-h-[370px] px-5 py-6 sm:px-6 sm:py-6"
+          className="science-panel overflow-visible min-h-[370px] px-5 py-6 sm:px-6 sm:py-6"
           initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.18, duration: 0.35 }}

@@ -140,8 +140,8 @@ export default function Slide2Draw({ goTo }: Props) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ delay: 0.18, duration: 0.32 }}
           >
-            <div className="absolute right-8 top-8 h-20 w-20 rounded-full bg-amber-200/38 blur-3xl" />
-            <div className="absolute left-8 top-12 h-20 w-20 rounded-full bg-teal-200/38 blur-3xl" />
+            <div className="absolute right-8 top-8 h-20 w-20 rounded-full bg-amber-200/[.38] blur-3xl" />
+            <div className="absolute left-8 top-12 h-20 w-20 rounded-full bg-teal-200/[.38] blur-3xl" />
 
             <div className="relative rounded-[1.7rem] border border-slate-200/80 bg-white/[0.88] px-4 py-4">
               <div className="flex items-center justify-between gap-3">

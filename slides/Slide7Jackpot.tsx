@@ -104,8 +104,8 @@ export default function Slide7Jackpot({ goTo }: Props) {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <div className="absolute left-8 top-8 h-20 w-20 rounded-full bg-teal-200/38 blur-3xl" />
-            <div className="absolute right-8 top-8 h-20 w-20 rounded-full bg-amber-200/34 blur-3xl" />
+            <div className="absolute left-8 top-8 h-20 w-20 rounded-full bg-teal-200/[.38] blur-3xl" />
+            <div className="absolute right-8 top-8 h-20 w-20 rounded-full bg-amber-200/[.34] blur-3xl" />
 
             <div className="relative">
               <div className="flex items-center gap-3">

@@ -68,7 +68,6 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-body), sans-serif;
     min-height: 100vh;
     position: relative;
   }
@@ -186,10 +185,6 @@
   }
 
   .deck-page-shell {
-    @apply flex w-full justify-center py-3 sm:py-4;
-  }
-
-  .deck-page-frame {
-    @apply w-full max-w-[1100px] space-y-4 sm:space-y-5;
+    @apply flex min-h-full w-full justify-center py-3 sm:py-4;
   }
 }
