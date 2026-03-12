@@ -55,8 +55,8 @@ export default function Slide2Draw({ goTo }: Props) {
   const sortedStars = drawn ? [...drawn.stars].sort((a, b) => a - b) : [];
 
   return (
-    <div className="flex w-full justify-center py-4 sm:py-6">
-      <div className="w-full max-w-6xl space-y-5">
+    <div className="deck-page-shell">
+      <div className="w-full max-w-[1100px] space-y-4 sm:space-y-5">
         <div className="text-center">
           <motion.div
             className="science-kicker mx-auto"
@@ -67,7 +67,7 @@ export default function Slide2Draw({ goTo }: Props) {
             5 + 2
           </motion.div>
           <motion.h1
-            className="mt-4 font-display text-4xl font-extrabold text-slate-800 sm:text-5xl"
+            className="mt-3 font-display text-[2rem] font-extrabold text-slate-800 sm:text-[2.6rem]"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.08 }}
@@ -75,7 +75,7 @@ export default function Slide2Draw({ goTo }: Props) {
             {t('title')}
           </motion.h1>
           <motion.p
-            className="mx-auto mt-4 max-w-2xl text-lg font-semibold leading-8 text-slate-600"
+            className="mx-auto mt-3 max-w-2xl text-base font-semibold leading-7 text-slate-600 sm:text-[1.05rem]"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.14 }}
@@ -84,17 +84,17 @@ export default function Slide2Draw({ goTo }: Props) {
           </motion.p>
         </div>
 
-        <div className="grid gap-5 lg:grid-cols-[1.04fr_0.96fr]">
-          <section className="science-panel px-5 py-5 sm:px-6 sm:py-6">
+        <div className="grid gap-4 lg:grid-cols-[1.04fr_0.96fr]">
+          <section className="science-panel px-4 py-4 sm:px-5 sm:py-5">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <p className="font-display text-2xl font-bold text-slate-800">{t('draw')}</p>
+                <p className="font-display text-xl font-bold text-slate-800">{t('draw')}</p>
                 <p className="mt-2 text-sm font-semibold text-slate-500">{t('noBallTwice')}</p>
               </div>
               <div className="science-kicker">5 + 2</div>
             </div>
 
-            <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            <div className="mt-5 grid gap-3 sm:grid-cols-2">
               <MachineCard
                 label={t('numbersLabel')}
                 values={sortedMains}
@@ -111,12 +111,12 @@ export default function Slide2Draw({ goTo }: Props) {
               />
             </div>
 
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="mt-5 flex flex-col gap-2.5 sm:flex-row sm:items-center">
               <button
                 type="button"
                 onClick={handleDraw}
                 disabled={isAnimating}
-                className="science-button-primary min-h-[58px] px-7 disabled:cursor-not-allowed disabled:opacity-60"
+                className="science-button-primary min-h-[54px] px-6 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 <Play className="h-5 w-5" />
                 {t('draw')}
@@ -125,7 +125,7 @@ export default function Slide2Draw({ goTo }: Props) {
                 <button
                   type="button"
                   onClick={handleReset}
-                  className="science-button-secondary min-h-[58px] px-6"
+                  className="science-button-secondary min-h-[54px] px-5"
                 >
                   <RotateCcw className="h-5 w-5" />
                   {t('reset')}
@@ -135,18 +135,18 @@ export default function Slide2Draw({ goTo }: Props) {
           </section>
 
           <motion.aside
-            className="science-panel overflow-visible px-5 py-5 sm:px-6 sm:py-6"
+            className="science-panel overflow-visible px-4 py-4 sm:px-5 sm:py-5"
             initial={{ opacity: 0, scale: 0.98, y: 12 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ delay: 0.18, duration: 0.32 }}
           >
-            <div className="absolute right-10 top-10 h-24 w-24 rounded-full bg-amber-200/45 blur-3xl" />
-            <div className="absolute left-10 top-16 h-24 w-24 rounded-full bg-teal-200/45 blur-3xl" />
+            <div className="absolute right-8 top-8 h-20 w-20 rounded-full bg-amber-200/38 blur-3xl" />
+            <div className="absolute left-8 top-12 h-20 w-20 rounded-full bg-teal-200/38 blur-3xl" />
 
-            <div className="relative rounded-[2rem] border border-slate-200/80 bg-white/[0.88] px-4 py-5">
+            <div className="relative rounded-[1.7rem] border border-slate-200/80 bg-white/[0.88] px-4 py-4">
               <div className="flex items-center justify-between gap-3">
                 <div>
-                  <p className="font-display text-2xl font-bold text-slate-800">{t('draw')}</p>
+                  <p className="font-display text-xl font-bold text-slate-800">{t('draw')}</p>
                   <p className="mt-2 text-sm font-semibold text-slate-500">{t('desc')}</p>
                 </div>
                 <div className="science-kicker">
@@ -169,7 +169,7 @@ export default function Slide2Draw({ goTo }: Props) {
                 />
               </div>
 
-              <div className="mt-5 rounded-[1.6rem] border border-dashed border-slate-300/80 bg-slate-50/85 px-4 py-4">
+              <div className="mt-4 rounded-[1.45rem] border border-dashed border-slate-300/80 bg-slate-50/85 px-4 py-4">
                 <div className="flex items-center gap-3">
                   <div className="science-ball h-11 w-11 bg-white text-slate-500">A</div>
                   <div className="h-1 flex-1 rounded-full bg-gradient-to-r from-teal-400 via-cyan-400 to-amber-300" />
@@ -212,22 +212,22 @@ function MachineCard({
         };
 
   return (
-    <div className={`rounded-[1.9rem] border border-white/80 bg-gradient-to-br ${palette.panel} px-4 py-5 shadow-[0_20px_32px_rgba(15,23,42,0.06)]`}>
+    <div className={`rounded-[1.6rem] border border-white/80 bg-gradient-to-br ${palette.panel} px-4 py-4 shadow-[0_16px_26px_rgba(15,23,42,0.06)]`}>
       <div className="flex items-center justify-between gap-3">
         <p className="font-display text-xl font-bold text-slate-800">{label}</p>
         <div className={`science-ball h-11 w-11 ${palette.badge}`}>{values.length}</div>
       </div>
 
-      <div className="mt-5 rounded-[1.8rem] border border-slate-200/80 bg-white/90 px-4 py-5">
+      <div className="mt-4 rounded-[1.6rem] border border-slate-200/80 bg-white/90 px-4 py-4">
         <div className={`h-2 rounded-full bg-gradient-to-r ${palette.rail}`} />
 
-        <div className="mt-5 flex min-h-[112px] flex-wrap items-center justify-center gap-3">
+        <div className="mt-4 flex min-h-[100px] flex-wrap items-center justify-center gap-2.5">
           {isAnimating ? (
             <>
               {Array.from({ length: tone === 'teal' ? MAIN_PICK : STAR_PICK }, (_, index) => (
                 <motion.div
                   key={`${tone}-ghost-${index}`}
-                  className={`science-ball h-12 w-12 ${tone === 'teal' ? 'bg-teal-200 text-teal-200' : 'bg-amber-200 text-amber-200'}`}
+                  className={`science-ball h-10 w-10 ${tone === 'teal' ? 'bg-teal-200 text-teal-200' : 'bg-amber-200 text-amber-200'}`}
                   animate={shouldReduceMotion ? { opacity: 0.9 } : { y: [0, -8, 0], opacity: [0.65, 1, 0.65] }}
                   transition={
                     shouldReduceMotion
@@ -246,7 +246,7 @@ function MachineCard({
                   tone === 'teal' ? (
                     <motion.div
                       key={`main-${value}`}
-                      className="science-ball h-12 w-12 bg-gradient-to-br from-teal-400 to-teal-600 text-lg text-white"
+                      className="science-ball h-10 w-10 bg-gradient-to-br from-teal-400 to-teal-600 text-base text-white"
                       initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -18, scale: 0.75 }}
                       animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
                       exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.8, y: 10 }}
@@ -261,7 +261,7 @@ function MachineCard({
                   ) : (
                     <motion.div
                       key={`star-${value}`}
-                      className="relative flex h-14 w-14 items-center justify-center"
+                      className="relative flex h-12 w-12 items-center justify-center"
                       initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.7, rotate: -20 }}
                       animate={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, scale: 1, rotate: index === 0 ? -8 : 8 }}
                       exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.8, rotate: 0 }}
@@ -272,7 +272,7 @@ function MachineCard({
                       }
                     >
                       <Star className="absolute h-full w-full fill-amber-300 text-amber-400 drop-shadow-[0_10px_18px_rgba(245,158,11,0.24)]" />
-                      <span className="relative z-10 font-display text-lg font-extrabold text-amber-950">{value}</span>
+                      <span className="relative z-10 font-display text-base font-extrabold text-amber-950">{value}</span>
                     </motion.div>
                   )
                 )
@@ -299,14 +299,14 @@ function ReadoutRow({
   values: number[];
 }) {
   return (
-    <div className="rounded-[1.4rem] border border-slate-200/80 bg-white/80 px-4 py-3">
+    <div className="rounded-[1.25rem] border border-slate-200/80 bg-white/80 px-4 py-3">
       <div className="flex items-center justify-between gap-3">
         <p className="text-sm font-black uppercase tracking-[0.18em] text-slate-400">{label}</p>
         <span className={`text-sm font-extrabold ${tone === 'teal' ? 'text-teal-600' : 'text-amber-600'}`}>
           {values.length > 0 ? values.length : 0}
         </span>
       </div>
-      <p className="mt-2 font-display text-2xl font-bold text-slate-800">
+      <p className="mt-2 font-display text-xl font-bold text-slate-800 sm:text-2xl">
         {values.length > 0 ? values.join('  ') : placeholder}
       </p>
     </div>

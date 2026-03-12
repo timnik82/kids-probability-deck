@@ -20,11 +20,11 @@ export default function LanguageSwitcher() {
   };
 
   return (
-    <div className="flex gap-1.5 rounded-full bg-white/80 p-1.5 shadow-sm ring-1 ring-slate-200/80">
+    <div className="flex gap-1.5 rounded-full bg-white/82 p-1.5 shadow-sm ring-1 ring-slate-200/80">
       <button
         onClick={() => switchTo('ru')}
         aria-pressed={locale === 'ru'}
-        className={`min-w-[56px] rounded-full px-3 py-2 text-sm font-extrabold transition-all ${
+        className={`min-h-[44px] min-w-[58px] rounded-full px-3.5 py-2 text-sm font-extrabold transition-all ${
           locale === 'ru'
             ? 'bg-primary text-primary-foreground shadow-lg shadow-teal-900/15'
             : 'text-slate-600 hover:bg-slate-100'
@@ -35,7 +35,7 @@ export default function LanguageSwitcher() {
       <button
         onClick={() => switchTo('pt')}
         aria-pressed={locale === 'pt'}
-        className={`min-w-[56px] rounded-full px-3 py-2 text-sm font-extrabold transition-all ${
+        className={`min-h-[44px] min-w-[58px] rounded-full px-3.5 py-2 text-sm font-extrabold transition-all ${
           locale === 'pt'
             ? 'bg-primary text-primary-foreground shadow-lg shadow-teal-900/15'
             : 'text-slate-600 hover:bg-slate-100'
