@@ -70,6 +70,46 @@ export default function Slide11Quiz({ goTo }: Props) {
     setAnswerHistory([]);
   };
 
+  const resultPanel = showResult ? (
+    <motion.section
+      key={`${currentQ}-${selected}`}
+      className={`science-panel px-5 py-5 sm:px-6 ${
+        correct ? 'bg-emerald-50/90' : 'bg-rose-50/90'
+      }`}
+      initial={{ opacity: 0, y: 14 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 10 }}
+    >
+      <div className="flex items-start gap-3">
+        <div
+          className={`science-ball h-12 w-12 shrink-0 ${
+            correct ? 'bg-emerald-500 text-white' : 'bg-rose-500 text-white'
+          }`}
+        >
+          {correct ? <CheckCircle2 className="h-5 w-5" /> : <XCircle className="h-5 w-5" />}
+        </div>
+        <div>
+          <p className={`font-display text-2xl font-bold ${correct ? 'text-emerald-700' : 'text-rose-700'}`}>
+            {correct ? t('correct') : t('wrong')}
+          </p>
+          {!correct && (
+            <p className="mt-2 text-sm font-semibold leading-6 text-rose-700">
+              <span className="block text-xs font-black uppercase tracking-[0.2em] text-rose-500">
+                {OPTION_LABELS[q.options.indexOf(q.correctKey)]}
+              </span>
+              {t(q.correctKey)}
+            </p>
+          )}
+        </div>
+      </div>
+
+      <button type="button" onClick={handleNext} className="science-button-primary mt-5 min-h-[58px] w-full">
+        {currentQ < questions.length - 1 ? t('nextQ') : t('finish')}
+        <ChevronRight className="h-5 w-5" />
+      </button>
+    </motion.section>
+  ) : null;
+
   if (finished) {
     const pct = score / questions.length;
     const summary = pct === 1 ? t('perfect') : pct >= 0.6 ? t('good') : t('tryAgain');
@@ -209,6 +249,10 @@ export default function Slide11Quiz({ goTo }: Props) {
                 })}
               </motion.div>
             </AnimatePresence>
+
+            <div className="mt-5">
+              <AnimatePresence mode="wait">{resultPanel}</AnimatePresence>
+            </div>
           </section>
 
           <aside className="space-y-5">
@@ -236,48 +280,6 @@ export default function Slide11Quiz({ goTo }: Props) {
                 ))}
               </div>
             </motion.section>
-
-            <AnimatePresence mode="wait">
-              {showResult && (
-                <motion.section
-                  key={`${currentQ}-${selected}`}
-                  className={`science-panel px-5 py-5 sm:px-6 ${
-                    correct ? 'bg-emerald-50/90' : 'bg-rose-50/90'
-                  }`}
-                  initial={{ opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                >
-                  <div className="flex items-start gap-3">
-                    <div
-                      className={`science-ball h-12 w-12 shrink-0 ${
-                        correct ? 'bg-emerald-500 text-white' : 'bg-rose-500 text-white'
-                      }`}
-                    >
-                      {correct ? <CheckCircle2 className="h-5 w-5" /> : <XCircle className="h-5 w-5" />}
-                    </div>
-                    <div>
-                      <p className={`font-display text-2xl font-bold ${correct ? 'text-emerald-700' : 'text-rose-700'}`}>
-                        {correct ? t('correct') : t('wrong')}
-                      </p>
-                      {!correct && (
-                        <p className="mt-2 text-sm font-semibold leading-6 text-rose-700">
-                          <span className="block text-xs font-black uppercase tracking-[0.2em] text-rose-500">
-                            {OPTION_LABELS[q.options.indexOf(q.correctKey)]}
-                          </span>
-                          {t(q.correctKey)}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-
-                  <button type="button" onClick={handleNext} className="science-button-primary mt-5 min-h-[58px] w-full">
-                    {currentQ < questions.length - 1 ? t('nextQ') : t('finish')}
-                    <ChevronRight className="h-5 w-5" />
-                  </button>
-                </motion.section>
-              )}
-            </AnimatePresence>
           </aside>
         </div>
       </div>

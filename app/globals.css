@@ -111,7 +111,7 @@
   button:focus-visible,
   a:focus-visible,
   input:focus-visible {
-    @apply outline-none ring-4 ring-primary/25 ring-offset-2 ring-offset-background;
+    @apply outline-none ring-2 ring-inset ring-primary/30;
   }
 }
 

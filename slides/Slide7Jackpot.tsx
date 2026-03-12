@@ -20,6 +20,11 @@ export default function Slide7Jackpot({ goTo }: Props) {
   const value = STOPS[stopIndex];
   void goTo;
   const numberFormatter = new Intl.NumberFormat(locale);
+  const compactFormatter = new Intl.NumberFormat(locale, {
+    notation: 'compact',
+    compactDisplay: 'short',
+    maximumFractionDigits: 1,
+  });
 
   const icons = [
     <span key="cards" className="text-4xl">🃏</span>,
@@ -59,25 +64,34 @@ export default function Slide7Jackpot({ goTo }: Props) {
             <section className="science-panel px-5 py-5 sm:px-6">
               <div className="flex items-center justify-between gap-3">
                 <div>
-                  <p className="font-display text-2xl font-bold text-slate-800">{t('sliderLabel')}</p>
-                  <p className="mt-1 text-sm font-semibold text-slate-500">{numberFormatter.format(value)}</p>
+                  <label htmlFor="jackpot-scale" className="block font-display text-2xl font-bold text-slate-800">
+                    {t('sliderLabel')}
+                  </label>
+                  <p id="jackpot-scale-value" className="mt-1 text-sm font-semibold text-slate-500">
+                    {numberFormatter.format(value)}
+                  </p>
                 </div>
                 <div className="science-kicker">{numberFormatter.format(value)}</div>
               </div>
 
               <div className="mt-5">
                 <input
+                  id="jackpot-scale"
                   type="range"
                   min={0}
                   max={STOPS.length - 1}
                   step={1}
                   value={stopIndex}
                   onChange={(e) => setStopIndex(Number(e.target.value))}
+                  aria-describedby="jackpot-scale-value"
                   className="science-range"
                 />
-                <div className="mt-3 flex justify-between text-[10px] font-bold tracking-[0.08em] text-slate-400 sm:text-xs">
+                <div className="mt-3 grid grid-cols-4 gap-2 text-center text-[10px] font-bold tracking-[0.08em] text-slate-400 sm:text-xs">
                   {STOPS.map((stop) => (
-                    <span key={`tick-${stop}`}>{numberFormatter.format(stop)}</span>
+                    <span key={`tick-${stop}`}>
+                      <span className="sm:hidden">{compactFormatter.format(stop)}</span>
+                      <span className="hidden sm:inline">{numberFormatter.format(stop)}</span>
+                    </span>
                   ))}
                 </div>
               </div>
