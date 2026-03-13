@@ -38,6 +38,10 @@ export default defineConfig({
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
     },
+    {
+      name: 'ipad-landscape',
+      use: { ...devices['iPad Pro 11 landscape'] },
+    },
   ],
 
   /* Run your local dev server before starting the tests */
