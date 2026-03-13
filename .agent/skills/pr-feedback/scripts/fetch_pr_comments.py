@@ -77,8 +77,8 @@ STATUS_NOISE_PATTERNS = [
     re.compile(r"planning.*disabled.*administrator", re.IGNORECASE),
     re.compile(r"this is an auto-generated comment", re.IGNORECASE),
     re.compile(r"fingerprinting.*poseidon.*ocelot", re.IGNORECASE),
-    re.compile(r"^walkthrough\b", re.IGNORECASE),
-    re.compile(r"^sequence diagram\b", re.IGNORECASE),
+    re.compile(r"^\s*walkthrough\s*$", re.IGNORECASE),
+    re.compile(r"^\s*sequence diagram\s*$", re.IGNORECASE),
 ]
 
 BROAD_BOT_ISSUE_COMMENT_PATTERNS = [
