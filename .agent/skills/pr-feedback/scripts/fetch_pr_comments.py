@@ -77,8 +77,8 @@ STATUS_NOISE_PATTERNS = [
     re.compile(r"planning.*disabled.*administrator", re.IGNORECASE),
     re.compile(r"this is an auto-generated comment", re.IGNORECASE),
     re.compile(r"fingerprinting.*poseidon.*ocelot", re.IGNORECASE),
-    re.compile(r"walkthrough.*changes", re.IGNORECASE),
-    re.compile(r"sequence diagram", re.IGNORECASE),
+    re.compile(r"^walkthrough\b", re.IGNORECASE),
+    re.compile(r"^sequence diagram\b", re.IGNORECASE),
 ]
 
 BROAD_BOT_ISSUE_COMMENT_PATTERNS = [
@@ -348,11 +348,11 @@ def is_coderabbit_administrative(body: str) -> bool:
         "this is an auto-generated comment",
         "reply with feedback, questions, or to request a fix",
         "tag @cubic-dev-ai to re-run a review",
-        "sub>cubic:attribution important",
+        "cubic:attribution important",
     ]
 
     # Keep nitpicks and actual code suggestions
-    if any(marker in text for marker in administrative_markers):
+    if any(normalize_for_matching(marker).lower() in text for marker in administrative_markers):
         return True
 
     return False
