@@ -7,6 +7,8 @@
 
 # testing
 /coverage
+/playwright-report
+/test-results
 
 # next.js
 /.next/
@@ -35,3 +37,4 @@ firebase-debug.log
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+__pycache__/

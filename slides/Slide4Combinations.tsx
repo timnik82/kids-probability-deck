@@ -29,28 +29,28 @@ export default function Slide4Combinations({ goTo }: Props) {
     picked.length === 2 && pair[0] === pickedSorted[0] && pair[1] === pickedSorted[1];
 
   return (
-    <div className="flex w-full justify-center py-4 sm:py-6">
-      <div className="w-full max-w-6xl space-y-5">
+    <div className="deck-page-shell">
+      <div className="w-full max-w-[1100px] space-y-4 sm:space-y-5">
         <div className="text-center">
           <div className="science-kicker mx-auto">
             <Sparkles className="h-3.5 w-3.5" />
             C(5,2)
           </div>
-          <h1 className="mt-4 font-display text-4xl font-extrabold text-slate-800 sm:text-5xl">{t('title')}</h1>
-          <p className="mx-auto mt-4 max-w-2xl text-lg font-semibold leading-8 text-slate-600">{t('desc')}</p>
+          <h1 className="mt-3 font-display text-[2rem] font-extrabold text-slate-800 sm:text-[2.6rem]">{t('title')}</h1>
+          <p className="mx-auto mt-3 max-w-2xl text-base font-semibold leading-7 text-slate-600 sm:text-[1.05rem]">{t('desc')}</p>
         </div>
 
-        <div className="grid gap-5 lg:grid-cols-[0.95fr_1.05fr]">
-          <section className="science-panel px-5 py-5 sm:px-6 sm:py-6">
+        <div className="grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
+          <section className="science-panel px-4 py-4 sm:px-5 sm:py-5">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <p className="font-display text-2xl font-bold text-slate-800">{t('pickTwo')}</p>
+                <p className="font-display text-xl font-bold text-slate-800">{t('pickTwo')}</p>
                 <p className="mt-2 text-sm font-semibold text-slate-500">{t('desc')}</p>
               </div>
               <div className="science-kicker">{picked.length} / 2</div>
             </div>
 
-            <div className="mt-6 grid grid-cols-5 gap-3">
+            <div className="mt-5 grid grid-cols-5 gap-2.5">
               {[1, 2, 3, 4, 5].map((n) => {
                 const selected = picked.includes(n);
                 const locked = picked.length >= 2 && !selected;
@@ -62,7 +62,7 @@ export default function Slide4Combinations({ goTo }: Props) {
                     onClick={() => toggle(n)}
                     disabled={locked}
                     aria-pressed={selected}
-                    className={`science-ball aspect-square text-xl transition-all sm:text-2xl ${
+                    className={`science-ball aspect-square text-lg transition-all sm:text-xl ${
                       selected
                         ? 'border-teal-200 bg-gradient-to-br from-teal-400 to-teal-600 text-white shadow-lg shadow-teal-900/15'
                         : 'bg-white text-slate-700 hover:-translate-y-0.5 hover:border-teal-100 hover:text-teal-700'
@@ -74,7 +74,7 @@ export default function Slide4Combinations({ goTo }: Props) {
               })}
             </div>
 
-            <div className="mt-6 rounded-[1.8rem] border border-dashed border-slate-300/80 bg-white/[0.78] px-4 py-4">
+            <div className="mt-5 rounded-[1.6rem] border border-dashed border-slate-300/80 bg-white/[0.78] px-4 py-4">
               <p className="text-sm font-black uppercase tracking-[0.2em] text-slate-400">{t('yourPick')}</p>
 
               {picked.length === 2 ? (
@@ -85,14 +85,14 @@ export default function Slide4Combinations({ goTo }: Props) {
                 >
                   <div className="grid gap-3 sm:grid-cols-[1fr_auto_1fr] sm:items-center">
                     <PairCard title={t('yourPick')} values={picked} tone="slate" />
-                    <div className="science-ball mx-auto h-12 w-12 bg-white text-teal-700">
+                    <div className="science-ball mx-auto h-10 w-10 bg-white text-teal-700">
                       <ArrowLeftRight className="h-5 w-5" />
                     </div>
                     <PairCard title={t('sortedPick')} values={pickedSorted} tone="teal" />
                   </div>
 
                   <div className="rounded-[1.4rem] bg-teal-50 px-4 py-3 text-center">
-                    <p className="font-display text-2xl font-bold text-slate-800">
+                    <p className="font-display text-xl font-bold text-slate-800 sm:text-2xl">
                       {picked[0]}-{picked[1]} = {pickedSorted[0]}-{pickedSorted[1]}
                     </p>
                     {picked[0] !== pickedSorted[0] && (
@@ -109,7 +109,7 @@ export default function Slide4Combinations({ goTo }: Props) {
             </div>
           </section>
 
-          <aside className="science-panel px-5 py-5 sm:px-6 sm:py-6">
+          <aside className="science-panel px-4 py-4 sm:px-5 sm:py-5">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
               <div>
                 <p className="font-display text-2xl font-bold text-slate-800">{t('allPairs')}</p>
@@ -117,7 +117,7 @@ export default function Slide4Combinations({ goTo }: Props) {
               <button
                 type="button"
                 onClick={() => setShowMath(!showMath)}
-                className="science-button-secondary min-h-[52px] px-5 text-sm"
+                  className="science-button-secondary min-h-[50px] px-4 text-sm"
                 aria-controls="slide4-math"
                 aria-expanded={showMath}
               >
@@ -126,11 +126,11 @@ export default function Slide4Combinations({ goTo }: Props) {
               </button>
             </div>
 
-            <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 xl:grid-cols-5">
+            <div className="mt-5 grid grid-cols-2 gap-2.5 sm:grid-cols-3 xl:grid-cols-5">
               {allPairs.map((pair, index) => (
                 <motion.div
                   key={pair.join('-')}
-                  className={`rounded-[1.4rem] border px-3 py-4 text-center transition-all ${
+                  className={`rounded-[1.25rem] border px-3 py-3.5 text-center transition-all ${
                     isMatch(pair)
                       ? 'border-teal-200 bg-gradient-to-br from-teal-400 to-teal-600 text-white shadow-lg shadow-teal-900/15'
                       : 'border-white/80 bg-white/[0.86] text-slate-600'
@@ -139,7 +139,7 @@ export default function Slide4Combinations({ goTo }: Props) {
                   animate={{ opacity: 1, y: 0, scale: isMatch(pair) ? 1.03 : 1 }}
                   transition={{ delay: index * 0.04 }}
                 >
-                  <p className="font-display text-2xl font-bold">{pair[0]}-{pair[1]}</p>
+                  <p className="font-display text-xl font-bold sm:text-2xl">{pair[0]}-{pair[1]}</p>
                 </motion.div>
               ))}
             </div>
@@ -148,7 +148,7 @@ export default function Slide4Combinations({ goTo }: Props) {
               {showMath && (
                 <motion.div
                   id="slide4-math"
-                  className="mt-5 rounded-[1.6rem] bg-slate-900 px-5 py-4 font-mono text-sm text-teal-300"
+                    className="mt-4 rounded-[1.45rem] bg-slate-900 px-4 py-4 font-mono text-sm text-teal-300"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
@@ -180,13 +180,13 @@ function PairCard({
       : [null, null];
 
   return (
-    <div className={`rounded-[1.5rem] border px-4 py-4 ${tone === 'teal' ? 'border-teal-100 bg-teal-50/80' : 'border-slate-200/80 bg-slate-50/80'}`}>
+    <div className={`rounded-[1.3rem] border px-4 py-4 ${tone === 'teal' ? 'border-teal-100 bg-teal-50/80' : 'border-slate-200/80 bg-slate-50/80'}`}>
       <p className="text-xs font-black uppercase tracking-[0.22em] text-slate-400">{title}</p>
       <div className="mt-3 flex items-center gap-3">
         {display.map((value, index) => (
           <div
             key={`${title}-${index}`}
-            className={`science-ball h-12 w-12 ${value !== null ? (tone === 'teal' ? 'bg-teal-500 text-white' : 'bg-slate-600 text-white') : 'bg-white text-slate-400'}`}
+          className={`science-ball h-10 w-10 ${value !== null ? (tone === 'teal' ? 'bg-teal-500 text-white' : 'bg-slate-600 text-white') : 'bg-white text-slate-400'}`}
           >
             {value ?? '?'}
           </div>

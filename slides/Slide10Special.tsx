@@ -46,28 +46,28 @@ export default function Slide10Special({ goTo }: Props) {
   const odds = `1 : ${numberFormatter.format(TOTAL_OUTCOMES)}`;
 
   return (
-    <div className="flex w-full justify-center py-4 sm:py-6">
-      <div className="w-full max-w-6xl space-y-5">
+    <div className="deck-page-shell">
+      <div className="w-full max-w-[1100px] space-y-4 sm:space-y-5">
         <div className="text-center">
           <div className="science-kicker mx-auto">
             <Sparkles className="h-3.5 w-3.5" />
             {t('test')}
           </div>
-          <h1 className="mt-4 font-display text-4xl font-extrabold text-slate-800 sm:text-5xl">{t('title')}</h1>
-          <p className="mx-auto mt-4 max-w-2xl text-base font-semibold leading-7 text-slate-500 sm:text-lg">
+          <h1 className="mt-3 font-display text-[2rem] font-extrabold text-slate-800 sm:text-[2.6rem]">{t('title')}</h1>
+          <p className="mx-auto mt-3 max-w-2xl text-base font-semibold leading-7 text-slate-500 sm:text-[1.05rem]">
             {t('note')}
           </p>
         </div>
 
-        <div className="grid gap-5 lg:grid-cols-[1.08fr_0.92fr]">
-          <section className="science-panel overflow-visible px-5 py-5 sm:px-6 sm:py-6">
+        <div className="grid gap-4 lg:grid-cols-[1.08fr_0.92fr]">
+          <section className="science-panel overflow-visible px-4 py-4 sm:px-5 sm:py-5">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <p className="font-display text-2xl font-bold text-slate-800">{t('title')}</p>
+                <p className="font-display text-xl font-bold text-slate-800">{t('title')}</p>
                 <p className="mt-1 text-sm font-semibold text-slate-500">{t('sameChance')}</p>
               </div>
 
-              <div className="inline-flex rounded-[1.6rem] border border-slate-200/80 bg-white/80 p-1.5 shadow-[0_12px_26px_rgba(15,23,42,0.08)]">
+              <div className="inline-flex rounded-[1.35rem] border border-slate-200/80 bg-white/80 p-1 shadow-[0_10px_22px_rgba(15,23,42,0.07)]">
                 {(['birthday', 'random'] as const).map((variant) => {
                   const Icon = MODE_CARDS[variant].icon;
                   const active = mode === variant;
@@ -78,7 +78,7 @@ export default function Slide10Special({ goTo }: Props) {
                       type="button"
                       onClick={() => setMode(variant)}
                       aria-pressed={active}
-                      className={`inline-flex min-h-[52px] items-center gap-2 rounded-[1.1rem] px-4 py-3 text-sm font-extrabold transition-all sm:px-5 ${
+                      className={`inline-flex min-h-[48px] items-center gap-2 rounded-[1rem] px-4 py-2.5 text-sm font-extrabold transition-all sm:px-4 ${
                         active
                           ? variant === 'birthday'
                             ? 'bg-amber-400 text-amber-950 shadow-lg shadow-amber-900/10'
@@ -94,7 +94,7 @@ export default function Slide10Special({ goTo }: Props) {
               </div>
             </div>
 
-            <div className="mt-5 grid gap-4 md:grid-cols-2">
+            <div className="mt-4 grid gap-3 md:grid-cols-2">
               {(['birthday', 'random'] as const).map((variant, index) => {
                 const config = MODE_CARDS[variant];
                 const active = mode === variant;
@@ -103,7 +103,7 @@ export default function Slide10Special({ goTo }: Props) {
                 return (
                   <motion.article
                     key={variant}
-                    className={`science-panel bg-gradient-to-br ${config.panelClass} px-5 py-5 transition-all ${
+                    className={`science-panel bg-gradient-to-br ${config.panelClass} px-4 py-4 transition-all ${
                       active ? config.activeClass : 'border-white/70 opacity-80'
                     }`}
                     initial={{ opacity: 0, y: 16 }}
@@ -113,14 +113,14 @@ export default function Slide10Special({ goTo }: Props) {
                     <div className="flex items-center justify-between gap-3">
                       <div className="flex items-center gap-3">
                         <div
-                          className={`science-ball h-11 w-11 ${
+                          className={`science-ball h-10 w-10 ${
                             variant === 'birthday' ? 'bg-amber-300 text-amber-950' : 'bg-teal-500 text-white'
                           }`}
                         >
                           <Icon className="h-5 w-5" />
                         </div>
                         <div>
-                          <p className="font-display text-xl font-bold text-slate-800">{t(variant)}</p>
+                          <p className="font-display text-lg font-bold text-slate-800 sm:text-xl">{t(variant)}</p>
                           <p className="text-sm font-semibold text-slate-500">{t('jackpotOdds')}</p>
                         </div>
                       </div>
@@ -129,12 +129,12 @@ export default function Slide10Special({ goTo }: Props) {
                       </span>
                     </div>
 
-                    <div className="mt-5 rounded-[1.8rem] border border-dashed border-slate-300/80 bg-white/80 px-4 py-4">
+                    <div className="mt-4 rounded-[1.6rem] border border-dashed border-slate-300/80 bg-white/80 px-4 py-4">
                       <div className="flex flex-wrap gap-2.5">
                         {config.mains.map((value) => (
                           <div
                             key={`${variant}-main-${value}`}
-                            className={`science-ball h-12 w-12 bg-gradient-to-br text-base ${config.ballClass}`}
+                            className={`science-ball h-10 w-10 bg-gradient-to-br text-sm ${config.ballClass}`}
                           >
                             {value}
                           </div>
@@ -145,7 +145,7 @@ export default function Slide10Special({ goTo }: Props) {
 
                       <div className="flex flex-wrap gap-3">
                         {config.stars.map((value) => (
-                          <div key={`${variant}-star-${value}`} className="relative flex h-12 w-12 items-center justify-center">
+                          <div key={`${variant}-star-${value}`} className="relative flex h-10 w-10 items-center justify-center">
                             <Star className="absolute h-full w-full fill-amber-300 text-amber-400" />
                             <span className="relative z-10 font-display text-base font-extrabold text-amber-950">{value}</span>
                           </div>
@@ -153,7 +153,7 @@ export default function Slide10Special({ goTo }: Props) {
                       </div>
                     </div>
 
-                    <p className="mt-4 font-display text-2xl font-bold text-slate-800">{odds}</p>
+                    <p className="mt-4 font-display text-xl font-bold text-slate-800 sm:text-2xl">{odds}</p>
                   </motion.article>
                 );
               })}
@@ -161,7 +161,7 @@ export default function Slide10Special({ goTo }: Props) {
 
             <motion.div
               key={mode}
-              className="mt-5 rounded-[1.9rem] border border-dashed border-slate-300/80 bg-white/70 px-4 py-5 sm:px-5"
+              className="mt-4 rounded-[1.6rem] border border-dashed border-slate-300/80 bg-white/70 px-4 py-4 sm:px-5"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
             >
@@ -184,14 +184,14 @@ export default function Slide10Special({ goTo }: Props) {
                   ))}
                 </div>
                 <div className="h-1 flex-1 rounded-full bg-gradient-to-r from-amber-300 via-cyan-400 to-teal-500" />
-                <p className="font-display text-2xl font-extrabold text-slate-800">{odds}</p>
+                  <p className="font-display text-xl font-extrabold text-slate-800 sm:text-2xl">{odds}</p>
               </div>
             </motion.div>
           </section>
 
-          <aside className="space-y-5">
+          <aside className="space-y-4">
             <motion.section
-              className="science-panel overflow-visible bg-gradient-to-br from-teal-600 via-cyan-500 to-teal-500 px-6 py-6 text-white sm:px-7"
+              className="science-panel overflow-visible bg-gradient-to-br from-teal-600 via-cyan-500 to-teal-500 px-5 py-5 text-white sm:px-6"
               initial={{ opacity: 0, y: 18, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ delay: 0.12, type: 'spring', stiffness: 180, damping: 18 }}
@@ -201,7 +201,7 @@ export default function Slide10Special({ goTo }: Props) {
                 <div className="science-kicker w-fit border-white/20 bg-white/15 text-white">
                   {t('jackpotOdds')}
                 </div>
-                <p className="mt-5 font-display text-4xl font-extrabold leading-none sm:text-5xl">{odds}</p>
+                <p className="mt-4 font-display text-[2.4rem] font-extrabold leading-none sm:text-[3rem]">{odds}</p>
                 <p className="mt-4 max-w-sm text-xl font-extrabold leading-tight text-white">{t('sameChance')}</p>
                 <p className="mt-4 max-w-sm text-sm font-semibold leading-6 text-teal-50 sm:text-base">{t('note')}</p>
               </div>
@@ -209,26 +209,26 @@ export default function Slide10Special({ goTo }: Props) {
 
             <motion.section
               key={`share-${mode}`}
-              className="science-panel bg-amber-50/85 px-5 py-5 sm:px-6"
+              className="science-panel bg-amber-50/85 px-4 py-4 sm:px-5"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
             >
               <div className="flex items-center gap-3">
-                <div className="science-ball h-11 w-11 bg-amber-300 text-amber-950">
+                <div className="science-ball h-10 w-10 bg-amber-300 text-amber-950">
                   <Users className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="font-display text-2xl font-bold text-slate-800">{t(mode)}</p>
+                  <p className="font-display text-xl font-bold text-slate-800">{t(mode)}</p>
                   <p className="text-sm font-semibold text-slate-500">{t('shareNote')}</p>
                 </div>
               </div>
 
-              <div className="mt-5 rounded-[1.8rem] border border-dashed border-amber-200/80 bg-white/75 px-4 py-4">
+              <div className="mt-4 rounded-[1.6rem] border border-dashed border-amber-200/80 bg-white/75 px-4 py-4">
                 <div className={`grid gap-2 ${mode === 'birthday' ? 'grid-cols-4' : 'grid-cols-4 sm:grid-cols-5'}`}>
                   {SHARE_PATTERNS[mode].map((value, index) => (
                     <motion.div
                       key={`${mode}-${value}-${index}`}
-                      className={`science-ball h-11 w-11 ${
+                      className={`science-ball h-10 w-10 ${
                         mode === 'birthday'
                           ? 'bg-gradient-to-br from-amber-200 to-orange-300 text-amber-950'
                           : 'bg-gradient-to-br from-teal-400 to-cyan-500 text-white'

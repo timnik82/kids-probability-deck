@@ -117,10 +117,10 @@
 
 @layer components {
   .science-panel {
-    @apply relative overflow-hidden rounded-[2rem] border border-white backdrop-blur-xl;
-    background: rgba(255, 255, 255, 0.8);
-    border-color: rgba(255, 255, 255, 0.8);
-    box-shadow: var(--panel-shadow);
+    @apply relative overflow-hidden rounded-[1.7rem] border border-white backdrop-blur-xl;
+    background: rgba(255, 255, 255, 0.84);
+    border-color: rgba(255, 255, 255, 0.74);
+    box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
   }
 
   .science-panel::before {
@@ -137,50 +137,54 @@
   }
 
   .science-kicker {
-    @apply inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-1.5 text-xs font-extrabold uppercase tracking-[0.24em] text-slate-500;
+    @apply inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3.5 py-1 text-[11px] font-extrabold uppercase tracking-[0.22em] text-slate-500;
     background: rgba(255, 255, 255, 0.85);
     border-color: rgba(226, 232, 240, 0.8);
-    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+    box-shadow: 0 6px 14px rgba(15, 23, 42, 0.05);
   }
 
   .science-button-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-[1.4rem] bg-primary px-6 py-3.5 text-base font-extrabold text-primary-foreground transition duration-200 hover:scale-[1.01] hover:bg-primary/90 active:scale-[0.98];
-    box-shadow: 0 16px 30px rgba(13, 148, 136, 0.24);
+    @apply inline-flex items-center justify-center gap-2 rounded-[1.2rem] bg-primary px-5 py-3 text-[15px] font-extrabold text-primary-foreground transition duration-200 hover:scale-[1.01] hover:bg-primary/90 active:scale-[0.98];
+    box-shadow: 0 12px 24px rgba(13, 148, 136, 0.2);
   }
 
   .science-button-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-[1.4rem] border border-slate-200 bg-white px-6 py-3.5 text-base font-extrabold text-slate-700 transition duration-200 hover:border-teal-200 hover:bg-teal-50 active:scale-[0.98];
+    @apply inline-flex items-center justify-center gap-2 rounded-[1.2rem] border border-slate-200 bg-white px-5 py-3 text-[15px] font-extrabold text-slate-700 transition duration-200 hover:border-teal-200 hover:bg-teal-50 active:scale-[0.98];
     background: rgba(255, 255, 255, 0.9);
     border-color: rgba(226, 232, 240, 0.8);
-    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05);
   }
 
   .science-ball {
     @apply flex items-center justify-center rounded-full border border-white/80 bg-white font-display font-extrabold text-slate-700;
-    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
   }
 
   .science-range {
-    @apply h-3 w-full cursor-pointer appearance-none rounded-full bg-slate-200;
+    @apply h-2.5 w-full cursor-pointer appearance-none rounded-full bg-slate-200;
     background: rgba(226, 232, 240, 0.9);
   }
 
   .science-range::-webkit-slider-thumb {
     appearance: none;
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
     border-radius: 9999px;
     background: hsl(var(--primary));
     border: 3px solid white;
-    box-shadow: 0 6px 14px rgba(13, 148, 136, 0.26);
+    box-shadow: 0 5px 12px rgba(13, 148, 136, 0.24);
   }
 
   .science-range::-moz-range-thumb {
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
     border-radius: 9999px;
     background: hsl(var(--primary));
     border: 3px solid white;
-    box-shadow: 0 6px 14px rgba(13, 148, 136, 0.26);
+    box-shadow: 0 5px 12px rgba(13, 148, 136, 0.24);
+  }
+
+  .deck-page-shell {
+    @apply flex min-h-full w-full justify-center py-3 sm:py-4;
   }
 }

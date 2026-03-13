@@ -16,9 +16,9 @@ export default function Slide1WhatIs({ goTo }: Props) {
   const t = useTranslations('slide1');
 
   return (
-    <div className="flex w-full justify-center py-4 sm:py-6">
-      <div className="grid w-full max-w-6xl gap-5 lg:grid-cols-[1fr_1.05fr]">
-        <section className="science-panel px-6 py-7 sm:px-8 sm:py-8">
+    <div className="deck-page-shell">
+      <div className="grid w-full max-w-[1100px] gap-4 lg:grid-cols-[1fr_1.05fr]">
+        <section className="science-panel px-5 py-6 sm:px-6 sm:py-7">
           <motion.div
             className="science-kicker"
             initial={{ opacity: 0, y: 10 }}
@@ -29,7 +29,7 @@ export default function Slide1WhatIs({ goTo }: Props) {
           </motion.div>
 
           <motion.h1
-            className="mt-5 max-w-xl font-display text-4xl font-extrabold leading-tight text-slate-800 sm:text-5xl"
+            className="mt-4 max-w-xl font-display text-[2rem] font-extrabold leading-tight text-slate-800 sm:text-[2.6rem]"
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.06 }}
@@ -38,7 +38,7 @@ export default function Slide1WhatIs({ goTo }: Props) {
           </motion.h1>
 
           <motion.p
-            className="mt-4 max-w-2xl text-lg font-semibold leading-8 text-slate-600"
+            className="mt-3 max-w-2xl text-base font-semibold leading-7 text-slate-600 sm:text-[1.05rem]"
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.12 }}
@@ -46,7 +46,7 @@ export default function Slide1WhatIs({ goTo }: Props) {
             {t('p1')}
           </motion.p>
 
-          <div className="mt-7 space-y-4">
+          <div className="mt-6 space-y-3">
             <LessonCard
               delay={0.18}
               index="01"
@@ -101,14 +101,14 @@ export default function Slide1WhatIs({ goTo }: Props) {
         </section>
 
         <motion.aside
-          className="science-panel overflow-visible px-5 py-6 sm:px-7 sm:py-7"
+          className="science-panel overflow-visible px-4 py-5 sm:px-6 sm:py-6"
           initial={{ opacity: 0, scale: 0.97, y: 18 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ delay: 0.16, duration: 0.35 }}
         >
-          <div className="absolute inset-x-10 top-9 h-24 rounded-full bg-gradient-to-r from-teal-200/50 via-cyan-100/10 to-amber-200/45 blur-3xl" />
+          <div className="absolute inset-x-8 top-8 h-20 rounded-full bg-gradient-to-r from-teal-200/45 via-cyan-100/10 to-amber-200/40 blur-3xl" />
 
-          <div className="relative rounded-[2rem] border border-slate-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(248,250,252,0.9))] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_22px_40px_rgba(15,23,42,0.08)] sm:p-6">
+          <div className="relative rounded-[1.7rem] border border-slate-200/80 bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(248,250,252,0.9))] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_18px_34px_rgba(15,23,42,0.07)] sm:p-5">
             <div className="absolute -left-3 top-6 h-9 w-16 rotate-[-8deg] rounded-md bg-amber-200/85 shadow-sm" />
             <div className="absolute -right-2 top-10 h-9 w-14 rotate-[10deg] rounded-md bg-teal-200/75 shadow-sm" />
 
@@ -123,8 +123,8 @@ export default function Slide1WhatIs({ goTo }: Props) {
               <div className="science-kicker">5 / 50</div>
             </div>
 
-            <div className="mt-6 grid gap-4 sm:grid-cols-[1.05fr_0.95fr]">
-              <div className="rounded-[1.8rem] border border-dashed border-slate-300/80 bg-white/[0.84] px-4 py-4">
+            <div className="mt-5 grid gap-3 sm:grid-cols-[1.05fr_0.95fr]">
+              <div className="rounded-[1.6rem] border border-dashed border-slate-300/80 bg-white/[0.84] px-4 py-4">
                 <div className="flex items-center justify-between gap-3">
                   <p className="font-display text-xl font-bold text-slate-800">{t('numbers')}</p>
                   <span className="science-kicker">5 / 50</span>
@@ -133,7 +133,7 @@ export default function Slide1WhatIs({ goTo }: Props) {
                   {sampleNumbers.map((n, index) => (
                     <motion.div
                       key={n}
-                      className="science-ball h-14 w-14 bg-gradient-to-br from-teal-400 to-teal-600 text-xl text-white"
+                      className="science-ball h-12 w-12 bg-gradient-to-br from-teal-400 to-teal-600 text-lg text-white"
                       initial={{ opacity: 0, y: 16, rotate: -8 }}
                       animate={{ opacity: 1, y: 0, rotate: index % 2 === 0 ? -4 : 4 }}
                       transition={{ delay: 0.18 + index * 0.05, type: 'spring', stiffness: 240, damping: 18 }}
@@ -144,7 +144,7 @@ export default function Slide1WhatIs({ goTo }: Props) {
                 </div>
               </div>
 
-              <div className="rounded-[1.8rem] border border-dashed border-slate-300/80 bg-amber-50/70 px-4 py-4">
+              <div className="rounded-[1.6rem] border border-dashed border-slate-300/80 bg-amber-50/70 px-4 py-4">
                 <div className="flex items-center justify-between gap-3">
                   <p className="font-display text-xl font-bold text-slate-800">{t('stars')}</p>
                   <span className="science-kicker">2 / 12</span>
@@ -153,7 +153,7 @@ export default function Slide1WhatIs({ goTo }: Props) {
                   {sampleStars.map((n, index) => (
                     <motion.div
                       key={n}
-                      className="relative flex h-16 w-16 items-center justify-center"
+                      className="relative flex h-14 w-14 items-center justify-center"
                       initial={{ opacity: 0, scale: 0.8, rotate: -24 }}
                       animate={{ opacity: 1, scale: 1, rotate: index === 0 ? -8 : 8 }}
                       transition={{ delay: 0.42 + index * 0.08, type: 'spring', stiffness: 210, damping: 14 }}
@@ -166,7 +166,7 @@ export default function Slide1WhatIs({ goTo }: Props) {
               </div>
             </div>
 
-            <div className="mt-5 rounded-[1.8rem] border border-slate-200/80 bg-slate-50/85 px-4 py-4">
+            <div className="mt-4 rounded-[1.6rem] border border-slate-200/80 bg-slate-50/85 px-4 py-4">
               <div className="flex flex-wrap items-center gap-3">
                 <div className="science-ball h-11 w-11 bg-white text-slate-500">1</div>
                 <div className="h-1 flex-1 rounded-full bg-gradient-to-r from-teal-400 via-cyan-400 to-amber-400" />
@@ -200,17 +200,17 @@ function LessonCard({
 }) {
   return (
     <motion.div
-      className="science-panel bg-white/70 px-4 py-4 sm:px-5"
+      className="science-panel bg-white/70 px-4 py-4"
       initial={{ opacity: 0, y: 18 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay }}
     >
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-start gap-4">
-          <div className="science-ball h-11 w-11 bg-slate-50 text-sm text-slate-500">{index}</div>
+          <div className="science-ball h-10 w-10 bg-slate-50 text-sm text-slate-500">{index}</div>
           <div className="space-y-2">
             <div className="flex flex-wrap items-center gap-3">
-              <p className="font-display text-xl font-bold text-slate-800">{title}</p>
+              <p className="font-display text-lg font-bold text-slate-800 sm:text-xl">{title}</p>
               <span className="science-kicker">{badge}</span>
             </div>
             <p className="max-w-xl text-sm font-semibold leading-6 text-slate-600 sm:text-base">{description}</p>

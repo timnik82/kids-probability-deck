@@ -34,21 +34,21 @@ export default function Slide7Jackpot({ goTo }: Props) {
   ];
 
   return (
-    <div className="flex w-full justify-center py-4 sm:py-6">
-      <div className="w-full max-w-6xl space-y-5">
+    <div className="deck-page-shell">
+      <div className="w-full max-w-[1100px] space-y-4 sm:space-y-5">
         <div className="text-center">
           <div className="science-kicker mx-auto">
             <Sparkles className="h-3.5 w-3.5" />
             {t('chance')}
           </div>
-          <h1 className="mt-4 font-display text-4xl font-extrabold text-slate-800 sm:text-5xl">{t('title')}</h1>
-          <p className="mx-auto mt-4 max-w-2xl text-base font-semibold leading-7 text-slate-500 sm:text-lg">{t('desc')}</p>
+          <h1 className="mt-3 font-display text-[2rem] font-extrabold text-slate-800 sm:text-[2.6rem]">{t('title')}</h1>
+          <p className="mx-auto mt-3 max-w-2xl text-base font-semibold leading-7 text-slate-500 sm:text-[1.05rem]">{t('desc')}</p>
         </div>
 
-        <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
-          <section className="space-y-5">
+        <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
+          <section className="space-y-4">
             <motion.div
-              className="science-panel overflow-visible bg-gradient-to-br from-teal-600 via-teal-500 to-cyan-500 px-6 py-6 text-white sm:px-7"
+              className="science-panel overflow-visible bg-gradient-to-br from-teal-600 via-teal-500 to-cyan-500 px-5 py-5 text-white sm:px-6"
               key={value}
               initial={{ opacity: 0, y: 18, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -56,15 +56,15 @@ export default function Slide7Jackpot({ goTo }: Props) {
             >
               <div className="absolute inset-x-8 -top-4 h-12 rounded-full bg-white/25 blur-3xl" />
               <p className="text-sm font-black uppercase tracking-[0.22em] text-teal-100">{t('chance')}</p>
-              <p className="mt-4 font-display text-4xl font-extrabold leading-none text-white sm:text-5xl">
+              <p className="mt-4 font-display text-[2.4rem] font-extrabold leading-none text-white sm:text-[3rem]">
                 {t('oneIn')} {numberFormatter.format(value)}
               </p>
             </motion.div>
 
-            <section className="science-panel px-5 py-5 sm:px-6">
+            <section className="science-panel px-4 py-4 sm:px-5">
               <div className="flex items-center justify-between gap-3">
                 <div>
-                  <label htmlFor="jackpot-scale" className="block font-display text-2xl font-bold text-slate-800">
+                  <label htmlFor="jackpot-scale" className="block font-display text-xl font-bold text-slate-800">
                     {t('sliderLabel')}
                   </label>
                   <p id="jackpot-scale-value" className="mt-1 text-sm font-semibold text-slate-500">
@@ -100,23 +100,23 @@ export default function Slide7Jackpot({ goTo }: Props) {
 
           <motion.section
             key={`viz-${stopIndex}`}
-            className="science-panel overflow-visible px-5 py-5 sm:px-6 sm:py-6"
+            className="science-panel overflow-visible px-4 py-4 sm:px-5 sm:py-5"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <div className="absolute left-10 top-8 h-24 w-24 rounded-full bg-teal-200/45 blur-3xl" />
-            <div className="absolute right-10 top-10 h-24 w-24 rounded-full bg-amber-200/40 blur-3xl" />
+            <div className="absolute left-8 top-8 h-20 w-20 rounded-full bg-teal-200/[.38] blur-3xl" />
+            <div className="absolute right-8 top-8 h-20 w-20 rounded-full bg-amber-200/[.34] blur-3xl" />
 
             <div className="relative">
               <div className="flex items-center gap-3">
                 <div className="science-ball h-12 w-12 bg-white text-teal-700">{icons[stopIndex]}</div>
                 <div>
-                  <p className="font-display text-2xl font-bold text-slate-800">{t('imagine')}</p>
+                  <p className="font-display text-xl font-bold text-slate-800">{t('imagine')}</p>
                   <p className="text-sm font-semibold text-slate-500">{t(STOP_LABELS_KEY[stopIndex])}</p>
                 </div>
               </div>
 
-              <div className="mt-6 rounded-[1.9rem] border border-dashed border-slate-300/80 bg-white/80 px-4 py-5">
+              <div className="mt-5 rounded-[1.6rem] border border-dashed border-slate-300/80 bg-white/80 px-4 py-4">
                 <div className="flex flex-col items-center gap-4 text-center">
                   {icons[stopIndex]}
                   <p className="max-w-md text-base font-semibold leading-7 text-slate-600 sm:text-lg">

@@ -72,6 +72,13 @@ STATUS_NOISE_PATTERNS = [
     re.compile(r"^\W*resolved\b", re.IGNORECASE),
     re.compile(r"resolved\b.*has been fixed", re.IGNORECASE),
     re.compile(r"\baddressed in\b\s+[0-9a-f]{7,40}\b", re.IGNORECASE),
+    # CodeRabbit-specific administrative noise
+    re.compile(r"actionable comments posted", re.IGNORECASE),
+    re.compile(r"planning.*disabled.*administrator", re.IGNORECASE),
+    re.compile(r"this is an auto-generated comment", re.IGNORECASE),
+    re.compile(r"fingerprinting.*poseidon.*ocelot", re.IGNORECASE),
+    re.compile(r"^\s*walkthrough\s*$", re.IGNORECASE),
+    re.compile(r"^\s*sequence diagram\s*$", re.IGNORECASE),
 ]
 
 BROAD_BOT_ISSUE_COMMENT_PATTERNS = [
@@ -80,6 +87,11 @@ BROAD_BOT_ISSUE_COMMENT_PATTERNS = [
     re.compile(r"recommended areas for review", re.IGNORECASE),
     re.compile(r"^review notes\b", re.IGNORECASE),
     re.compile(r"^summary of changes\b", re.IGNORECASE),
+    # CodeRabbit administrative patterns (but keep nitpicks)
+    re.compile(r"^##\s*walkthrough\b", re.IGNORECASE),
+    re.compile(r"^##\s*sequence diagram\b", re.IGNORECASE),
+    re.compile(r"adds.*end-to-end.*test.*infra", re.IGNORECASE),
+    re.compile(r"integrates.*playwright", re.IGNORECASE),
 ]
 
 ACTIONABLE_KEYWORDS = [
@@ -290,6 +302,10 @@ def looks_actionable(comment_type: str, body: str) -> bool:
     if is_status_noise(body):
         return False
 
+    # Filter out CodeRabbit administrative content
+    if is_coderabbit_administrative(body):
+        return False
+
     lowered = normalize_for_matching(body).lower()
     if any(keyword in lowered for keyword in ACTIONABLE_KEYWORDS):
         return True
@@ -317,6 +333,29 @@ def is_broad_bot_issue_comment(body: str) -> bool:
         ("nitpicks" in normalized or "recommended areas for review" in normalized)
         and (has_checklist or has_multiple_bullets)
     )
+
+
+def is_coderabbit_administrative(body: str) -> bool:
+    """Check if this is CodeRabbit administrative/meta content that should be filtered."""
+    text = normalize_for_matching(body).lower()
+
+    # Administrative messages that are pure noise
+    administrative_markers = [
+        "actionable comments posted",
+        "planning has been disabled",
+        "auto-generated comment by coderabbit",
+        "fingerprinting:phantom:poseidon:ocelot",
+        "this is an auto-generated comment",
+        "reply with feedback, questions, or to request a fix",
+        "tag @cubic-dev-ai to re-run a review",
+        "cubic:attribution important",
+    ]
+
+    # Keep nitpicks and actual code suggestions
+    if any(normalize_for_matching(marker).lower() in text for marker in administrative_markers):
+        return True
+
+    return False
 
 
 def shorten(text: str, max_len: int = 220) -> str:

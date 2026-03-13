@@ -73,7 +73,7 @@ export default function Slide11Quiz({ goTo }: Props) {
   const resultPanel = showResult ? (
     <motion.section
       key={`${currentQ}-${selected}`}
-      className={`science-panel px-5 py-5 sm:px-6 ${
+      className={`science-panel px-4 py-4 sm:px-5 ${
         correct ? 'bg-emerald-50/90' : 'bg-rose-50/90'
       }`}
       initial={{ opacity: 0, y: 14 }}
@@ -82,14 +82,14 @@ export default function Slide11Quiz({ goTo }: Props) {
     >
       <div className="flex items-start gap-3">
         <div
-          className={`science-ball h-12 w-12 shrink-0 ${
+          className={`science-ball h-11 w-11 shrink-0 ${
             correct ? 'bg-emerald-500 text-white' : 'bg-rose-500 text-white'
           }`}
         >
           {correct ? <CheckCircle2 className="h-5 w-5" /> : <XCircle className="h-5 w-5" />}
         </div>
         <div>
-          <p className={`font-display text-2xl font-bold ${correct ? 'text-emerald-700' : 'text-rose-700'}`}>
+          <p className={`font-display text-xl font-bold ${correct ? 'text-emerald-700' : 'text-rose-700'}`}>
             {correct ? t('correct') : t('wrong')}
           </p>
           {!correct && (
@@ -103,7 +103,7 @@ export default function Slide11Quiz({ goTo }: Props) {
         </div>
       </div>
 
-      <button type="button" onClick={handleNext} className="science-button-primary mt-5 min-h-[58px] w-full">
+      <button type="button" onClick={handleNext} className="science-button-primary mt-4 min-h-[54px] w-full">
         {currentQ < questions.length - 1 ? t('nextQ') : t('finish')}
         <ChevronRight className="h-5 w-5" />
       </button>
@@ -115,9 +115,9 @@ export default function Slide11Quiz({ goTo }: Props) {
     const summary = pct === 1 ? t('perfect') : pct >= 0.6 ? t('good') : t('tryAgain');
 
     return (
-      <div className="flex w-full justify-center py-4 sm:py-6">
+      <div className="deck-page-shell">
         <motion.div
-          className="science-panel overflow-visible w-full max-w-4xl bg-gradient-to-br from-teal-600 via-cyan-500 to-amber-300 px-6 py-8 text-white sm:px-8 sm:py-9"
+          className="science-panel overflow-visible w-full max-w-[980px] bg-gradient-to-br from-teal-600 via-cyan-500 to-amber-300 px-5 py-7 text-white sm:px-6 sm:py-8"
           initial={{ opacity: 0, y: 18, scale: 0.98 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ type: 'spring', stiffness: 180, damping: 18 }}
@@ -130,16 +130,16 @@ export default function Slide11Quiz({ goTo }: Props) {
                 <Sparkles className="h-3.5 w-3.5" />
                 {t('finish')}
               </div>
-              <h1 className="mt-5 font-display text-4xl font-extrabold leading-none text-white sm:text-5xl">
+              <h1 className="mt-4 font-display text-[2.8rem] font-extrabold leading-none text-white sm:text-[3.4rem]">
                 {score} / {questions.length}
               </h1>
-              <p className="mt-4 max-w-xl text-xl font-extrabold leading-tight text-white sm:text-2xl">{summary}</p>
+              <p className="mt-3 max-w-xl text-lg font-extrabold leading-tight text-white sm:text-[1.7rem]">{summary}</p>
 
-              <div className="mt-6 flex flex-wrap gap-2">
+              <div className="mt-5 flex flex-wrap gap-2">
                 {Array.from({ length: questions.length }, (_, index) => (
                   <div
                     key={`finish-chip-${index}`}
-                    className={`science-ball h-11 w-11 ${
+                    className={`science-ball h-10 w-10 ${
                       answerHistory[index] ? 'bg-white text-teal-700' : 'bg-white/15 text-white'
                     }`}
                   >
@@ -149,18 +149,18 @@ export default function Slide11Quiz({ goTo }: Props) {
               </div>
             </div>
 
-            <div className="rounded-[2rem] border border-white/20 bg-white/15 p-5 backdrop-blur-sm sm:p-6">
+            <div className="rounded-[1.7rem] border border-white/20 bg-white/15 p-4 backdrop-blur-sm sm:p-5">
               <div className="flex items-center justify-between gap-3">
                 <div>
                   <p className="text-sm font-black uppercase tracking-[0.22em] text-teal-50">{t('score')}</p>
-                  <p className="mt-2 font-display text-5xl font-extrabold leading-none text-white">{score}</p>
+                  <p className="mt-2 font-display text-[2.8rem] font-extrabold leading-none text-white sm:text-5xl">{score}</p>
                 </div>
-                <div className="science-ball h-20 w-20 bg-white text-amber-500">
-                  <Trophy className="h-10 w-10" />
+                <div className="science-ball h-16 w-16 bg-white text-amber-500">
+                  <Trophy className="h-8 w-8" />
                 </div>
               </div>
 
-              <button type="button" onClick={handleRestart} className="science-button-secondary mt-6 min-h-[58px] w-full bg-white text-slate-800">
+              <button type="button" onClick={handleRestart} className="science-button-secondary mt-5 min-h-[54px] w-full bg-white text-slate-800">
                 <RotateCcw className="h-5 w-5" />
                 {t('restart')}
               </button>
@@ -172,21 +172,21 @@ export default function Slide11Quiz({ goTo }: Props) {
   }
 
   return (
-    <div className="flex w-full justify-center py-4 sm:py-6">
-      <div className="w-full max-w-6xl space-y-5">
+    <div className="deck-page-shell">
+      <div className="w-full max-w-[1100px] space-y-4 sm:space-y-5">
         <div className="text-center">
           <div className="science-kicker mx-auto">
             <Sparkles className="h-3.5 w-3.5" />
             {currentQ + 1} / {questions.length}
           </div>
-          <h1 className="mt-4 font-display text-4xl font-extrabold text-slate-800 sm:text-5xl">{t('title')}</h1>
+          <h1 className="mt-3 font-display text-[2rem] font-extrabold text-slate-800 sm:text-[2.6rem]">{t('title')}</h1>
         </div>
 
-        <div className="grid gap-5 lg:grid-cols-[1.08fr_0.92fr]">
-          <section className="science-panel overflow-visible px-5 py-5 sm:px-6 sm:py-6">
+        <div className="grid gap-4 lg:grid-cols-[1.08fr_0.92fr]">
+          <section className="science-panel overflow-visible px-4 py-4 sm:px-5 sm:py-5">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <p className="font-display text-2xl font-bold text-slate-800">{t(q.key)}</p>
+                <p className="font-display text-xl font-bold text-slate-800 sm:text-2xl">{t(q.key)}</p>
                 <p className="mt-1 text-sm font-semibold text-slate-500">
                   {t('score')}: {score}
                 </p>
@@ -194,7 +194,7 @@ export default function Slide11Quiz({ goTo }: Props) {
               <div className="science-kicker">{currentQ + 1} / {questions.length}</div>
             </div>
 
-            <div className="mt-5 h-3 overflow-hidden rounded-full bg-slate-200/80">
+            <div className="mt-4 h-2.5 overflow-hidden rounded-full bg-slate-200/80">
               <div
                 className="h-full rounded-full bg-gradient-to-r from-teal-500 via-cyan-400 to-amber-400 transition-all duration-300"
                 style={{ width: `${progress}%` }}
@@ -204,7 +204,7 @@ export default function Slide11Quiz({ goTo }: Props) {
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentQ}
-                className="mt-5 space-y-3"
+                className="mt-4 space-y-2.5"
                 initial={{ opacity: 0, x: 30 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -30 }}
@@ -232,14 +232,14 @@ export default function Slide11Quiz({ goTo }: Props) {
                       type="button"
                       onClick={() => handleSelect(optKey)}
                       disabled={showResult}
-                      className={`w-full rounded-[1.7rem] border px-4 py-4 text-left transition-all sm:px-5 sm:py-4 ${optionClass} ${
+                      className={`w-full rounded-[1.45rem] border px-4 py-3.5 text-left transition-all sm:px-5 sm:py-3.5 ${optionClass} ${
                         showResult ? 'cursor-default' : ''
                       }`}
                     >
                       <div className="flex items-start gap-3">
-                        <div className={`science-ball h-11 w-11 shrink-0 ${badgeClass}`}>{OPTION_LABELS[index]}</div>
+                        <div className={`science-ball h-10 w-10 shrink-0 ${badgeClass}`}>{OPTION_LABELS[index]}</div>
                         <div className="flex-1 pt-1">
-                          <p className="text-base font-extrabold leading-7 text-slate-700 sm:text-lg">{t(optKey)}</p>
+                          <p className="text-[15px] font-extrabold leading-6 text-slate-700 sm:text-[1.02rem]">{t(optKey)}</p>
                         </div>
                         {showResult && isCorrect && <CheckCircle2 className="mt-1 h-6 w-6 shrink-0 text-emerald-500" />}
                         {showResult && isSelected && !isCorrect && <XCircle className="mt-1 h-6 w-6 shrink-0 text-rose-500" />}
@@ -255,25 +255,25 @@ export default function Slide11Quiz({ goTo }: Props) {
             </div>
           </section>
 
-          <aside className="space-y-5">
+          <aside className="space-y-4">
             <motion.section
-              className="science-panel bg-slate-900 px-5 py-5 text-white sm:px-6"
+              className="science-panel bg-slate-900 px-4 py-4 text-white sm:px-5"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
             >
               <div className="flex items-center justify-between gap-3">
                 <div>
                   <p className="text-sm font-black uppercase tracking-[0.22em] text-teal-200">{t('score')}</p>
-                  <p className="mt-2 font-display text-5xl font-extrabold leading-none text-white">{score}</p>
+                  <p className="mt-2 font-display text-[2.6rem] font-extrabold leading-none text-white sm:text-5xl">{score}</p>
                 </div>
-                <div className="science-ball h-16 w-16 bg-white text-slate-900">{currentQ + 1}</div>
+                <div className="science-ball h-14 w-14 bg-white text-slate-900">{currentQ + 1}</div>
               </div>
 
-              <div className="mt-5 grid grid-cols-5 gap-2">
+              <div className="mt-4 grid grid-cols-5 gap-2">
                 {Array.from({ length: questions.length }, (_, index) => (
                   <div
                     key={`progress-${index}`}
-                    className={`h-3 rounded-full transition-colors ${
+                    className={`h-2.5 rounded-full transition-colors ${
                       index < currentQ ? 'bg-teal-400' : index === currentQ ? 'bg-amber-300' : 'bg-white/15'
                     }`}
                   />

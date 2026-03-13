@@ -16,18 +16,18 @@ export default function Slide3Playground({ goTo }: Props) {
   const [tab, setTab] = useState<Tab>('coin');
 
   return (
-    <div className="flex w-full justify-center py-4 sm:py-6">
-      <div className="w-full max-w-5xl space-y-5">
+    <div className="deck-page-shell">
+      <div className="w-full max-w-[1040px] space-y-4 sm:space-y-5">
         <div className="text-center">
           <div className="science-kicker mx-auto">
             <Sparkles className="h-3.5 w-3.5" />
             {t('formula')}
           </div>
-          <h1 className="mt-4 font-display text-4xl font-extrabold text-slate-800 sm:text-5xl">{t('title')}</h1>
+          <h1 className="mt-3 font-display text-[2rem] font-extrabold text-slate-800 sm:text-[2.6rem]">{t('title')}</h1>
         </div>
 
-        <div className="science-panel p-3 sm:p-4">
-          <div className="grid gap-3 sm:grid-cols-3">
+        <div className="science-panel p-2.5 sm:p-3">
+          <div className="grid gap-2.5 sm:grid-cols-3">
             {([
               { id: 'coin', icon: Coins },
               { id: 'die', icon: Dice5 },
@@ -36,24 +36,24 @@ export default function Slide3Playground({ goTo }: Props) {
               <button
                 key={id}
                 onClick={() => setTab(id)}
-                className={`rounded-[1.6rem] border px-4 py-4 text-left transition-all ${
+                className={`rounded-[1.35rem] border px-3 py-3 text-left transition-all ${
                   tab === id
                     ? 'border-teal-200 bg-teal-500 text-white shadow-lg shadow-teal-900/15'
                     : 'border-white/80 bg-white/[0.85] text-slate-700 hover:border-teal-100 hover:bg-teal-50'
                 }`}
               >
                 <div className="flex items-center gap-3">
-                  <div className={`science-ball h-12 w-12 ${tab === id ? 'bg-white/20 text-white' : 'bg-slate-50 text-teal-700'}`}>
+                  <div className={`science-ball h-10 w-10 ${tab === id ? 'bg-white/20 text-white' : 'bg-slate-50 text-teal-700'}`}>
                     <Icon className="h-5 w-5" />
                   </div>
-                  <span className="font-display text-xl font-bold">{t(id)}</span>
+                  <span className="font-display text-lg font-bold sm:text-xl">{t(id)}</span>
                 </div>
               </button>
             ))}
           </div>
         </div>
 
-        <div className="science-panel p-5 sm:p-7">
+        <div className="science-panel p-4 sm:p-5">
           {tab === 'coin' && <CoinTab />}
           {tab === 'die' && <DieTab />}
           {tab === 'bag' && <BagTab />}
@@ -86,14 +86,14 @@ function CoinTab() {
   const ratioLabel = total > 0 ? ratio.toFixed(3) : '--';
 
   return (
-    <div className="space-y-6">
-      <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
-        <div className="science-panel bg-gradient-to-br from-teal-50/90 to-white px-5 py-6">
+    <div className="space-y-5">
+      <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="science-panel bg-gradient-to-br from-teal-50/90 to-white px-4 py-5">
           <p className="science-kicker w-fit">{t('coin')}</p>
-          <div className="mt-5 flex flex-col items-center gap-4 text-center">
+          <div className="mt-4 flex flex-col items-center gap-3 text-center">
             <motion.div
               key={total}
-              className={`science-ball h-28 w-28 text-4xl ${
+              className={`science-ball h-24 w-24 text-[2rem] ${
                 lastResult === null
                   ? 'bg-white text-slate-400'
                   : lastResult
@@ -105,24 +105,24 @@ function CoinTab() {
             >
               {lastResult === null ? '?' : lastResult ? 'O' : 'X'}
             </motion.div>
-            <p className="font-display text-2xl font-bold text-slate-800">{fractionLabel}</p>
+            <p className="font-display text-xl font-bold text-slate-800 sm:text-2xl">{fractionLabel}</p>
             <p className="text-sm font-semibold text-slate-500">{t('probability')}</p>
           </div>
         </div>
 
         <div className="space-y-4">
-          <div className="grid gap-3 sm:grid-cols-3">
+          <div className="grid gap-2.5 sm:grid-cols-3">
             <DataCard label={t('heads')} value={heads} tone="teal" />
             <DataCard label={t('tails')} value={total - heads} tone="amber" />
             <DataCard label={t('total')} value={total} tone="slate" />
           </div>
 
-          <div className="science-panel px-5 py-5">
+          <div className="science-panel px-4 py-4">
             <div className="flex items-center justify-between gap-3 text-sm font-bold text-slate-500">
               <span>{t('probability')}</span>
               <span>{ratioLabel}</span>
             </div>
-            <div className="mt-3 h-5 overflow-hidden rounded-full bg-slate-200/80">
+            <div className="mt-3 h-4 overflow-hidden rounded-full bg-slate-200/80">
               <motion.div
                 className="h-full rounded-full bg-gradient-to-r from-teal-400 to-cyan-400"
                 animate={{ width: `${ratio * 100}%` }}
@@ -134,7 +134,7 @@ function CoinTab() {
         </div>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-3">
+      <div className="flex flex-wrap justify-center gap-2.5">
         <ActionButton onClick={flip} tone="primary">
           {t('flip')} x1
         </ActionButton>
@@ -176,8 +176,8 @@ function DieTab() {
   const ratioLabel = total > 0 ? ratio.toFixed(3) : '--';
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-wrap justify-center gap-3">
+    <div className="space-y-5">
+      <div className="flex flex-wrap justify-center gap-2.5">
         {(['even', 'moreThan3', 'exactly1'] as const).map((opt) => (
           <button
             key={opt}
@@ -185,7 +185,7 @@ function DieTab() {
               setTarget(opt);
               setResults([]);
             }}
-            className={`rounded-full border px-4 py-2.5 text-sm font-extrabold transition-all ${
+            className={`rounded-full border px-3.5 py-2 text-[13px] font-extrabold transition-all sm:text-sm ${
               target === opt
                 ? 'border-teal-200 bg-teal-500 text-white shadow-lg shadow-teal-900/15'
                 : 'border-white/80 bg-white text-slate-600 hover:border-teal-100 hover:bg-teal-50'
@@ -196,13 +196,13 @@ function DieTab() {
         ))}
       </div>
 
-      <div className="grid gap-5 lg:grid-cols-[0.92fr_1.08fr]">
-        <div className="science-panel bg-gradient-to-br from-amber-50/85 to-white px-5 py-6">
+      <div className="grid gap-4 lg:grid-cols-[0.92fr_1.08fr]">
+        <div className="science-panel bg-gradient-to-br from-amber-50/85 to-white px-4 py-5">
           <p className="science-kicker w-fit">{t('die')}</p>
-          <div className="mt-5 flex flex-col items-center gap-4 text-center">
+          <div className="mt-4 flex flex-col items-center gap-3 text-center">
             <motion.div
               key={total}
-              className="science-ball h-28 w-28 rounded-[2rem] bg-white text-5xl text-slate-700"
+              className="science-ball h-24 w-24 rounded-[1.7rem] bg-white text-4xl text-slate-700"
               animate={{ rotate: [0, 12, -12, 0] }}
               transition={{ duration: 0.35 }}
             >
@@ -213,20 +213,20 @@ function DieTab() {
         </div>
 
         <div className="space-y-4">
-          <div className="grid gap-3 sm:grid-cols-3">
+          <div className="grid gap-2.5 sm:grid-cols-3">
             <DataCard label={t('favorable')} value={favorable} tone="teal" />
             <DataCard label={t('total')} value={total} tone="slate" />
             <DataCard label={t('probability')} value={ratioLabel} tone="amber" />
           </div>
 
-          <div className="science-panel px-5 py-5">
+          <div className="science-panel px-4 py-4">
             <div className="flex items-center justify-between gap-3 text-sm font-bold text-slate-500">
               <span>{t('probability')}</span>
               <span>
                 {targetSets[target].length}/6
               </span>
             </div>
-            <div className="mt-3 h-5 overflow-hidden rounded-full bg-slate-200/80">
+            <div className="mt-3 h-4 overflow-hidden rounded-full bg-slate-200/80">
               <motion.div
                 className="h-full rounded-full bg-gradient-to-r from-amber-300 via-orange-300 to-rose-300"
                 animate={{ width: `${ratio * 100}%` }}
@@ -238,7 +238,7 @@ function DieTab() {
         </div>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-3">
+      <div className="flex flex-wrap justify-center gap-2.5">
         <ActionButton onClick={roll} tone="primary">
           {t('roll')} x1
         </ActionButton>
@@ -258,10 +258,10 @@ function BagTab() {
   const prob = totalBalls > 0 ? redBalls / totalBalls : 0;
 
   return (
-    <div className="space-y-6">
-      <div className="grid gap-5 lg:grid-cols-[0.98fr_1.02fr]">
+    <div className="space-y-5">
+      <div className="grid gap-4 lg:grid-cols-[0.98fr_1.02fr]">
         <div className="space-y-4">
-          <div className="science-panel px-5 py-5">
+          <div className="science-panel px-4 py-4">
             <div className="flex items-center justify-between gap-3">
               <label className="font-display text-xl font-bold text-slate-800" htmlFor="total-balls">
                 {t('totalBalls')}
@@ -283,7 +283,7 @@ function BagTab() {
             />
           </div>
 
-          <div className="science-panel px-5 py-5">
+          <div className="science-panel px-4 py-4">
             <div className="flex items-center justify-between gap-3">
               <label className="font-display text-xl font-bold text-slate-800" htmlFor="red-balls">
                 {t('redBalls')}
@@ -302,8 +302,8 @@ function BagTab() {
           </div>
         </div>
 
-        <div className="science-panel bg-gradient-to-br from-sky-50/90 to-white px-5 py-6">
-          <div className="grid grid-cols-4 gap-3 sm:grid-cols-5">
+        <div className="science-panel bg-gradient-to-br from-sky-50/90 to-white px-4 py-5">
+          <div className="grid grid-cols-4 gap-2.5 sm:grid-cols-5">
             {Array.from({ length: totalBalls }, (_, i) => (
               <motion.div
                 key={i}
@@ -322,12 +322,12 @@ function BagTab() {
             ))}
           </div>
 
-          <div className="mt-6 space-y-3">
+          <div className="mt-5 space-y-3">
             <div className="flex items-center justify-between gap-3 text-sm font-bold text-slate-500">
               <span>{t('probability')}</span>
               <span>{prob.toFixed(3)}</span>
             </div>
-            <div className="h-5 overflow-hidden rounded-full bg-slate-200/80">
+            <div className="h-4 overflow-hidden rounded-full bg-slate-200/80">
               <motion.div
                 className="h-full rounded-full bg-gradient-to-r from-rose-400 via-orange-300 to-amber-300"
                 animate={{ width: `${prob * 100}%` }}
@@ -360,9 +360,9 @@ function DataCard({
   };
 
   return (
-    <div className={`science-panel bg-gradient-to-br px-4 py-4 ${tones[tone]}`}>
+    <div className={`science-panel bg-gradient-to-br px-3.5 py-3.5 ${tones[tone]}`}>
       <p className="text-sm font-bold text-slate-500">{label}</p>
-      <p className="mt-2 font-display text-3xl font-extrabold">{value}</p>
+      <p className="mt-1.5 font-display text-[1.7rem] font-extrabold sm:text-3xl">{value}</p>
     </div>
   );
 }
@@ -379,7 +379,7 @@ function ActionButton({
   return (
     <button
       onClick={onClick}
-      className={tone === 'primary' ? 'science-button-primary min-h-[54px]' : 'science-button-secondary min-h-[54px]'}
+      className={tone === 'primary' ? 'science-button-primary min-h-[50px]' : 'science-button-secondary min-h-[50px]'}
     >
       {children}
     </button>
@@ -388,7 +388,7 @@ function ActionButton({
 
 function IconButton({ onClick, label }: { onClick: () => void; label: string }) {
   return (
-    <button onClick={onClick} className="science-button-secondary min-h-[54px] px-4" aria-label={label}>
+    <button onClick={onClick} className="science-button-secondary min-h-[50px] px-4" aria-label={label}>
       <RefreshCw className="h-5 w-5" />
     </button>
   );
