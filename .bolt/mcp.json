@@ -3,17 +3,14 @@
     "context7": {
       "enabled": true
     },
-    "github": {
-      "enabled": true
-    },
     "exa": {
       "enabled": true
     },
-    "ref": {
+    "ref_tools": {
       "enabled": true
     },
-    "magic_patterns": {
-      "enabled": false
+    "ref_plans": {
+      "enabled": true
     }
   }
 }
