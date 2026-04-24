@@ -11,6 +11,9 @@
     },
     "ref_plans": {
       "enabled": true
+    },
+    "zread": {
+      "enabled": false
     }
   }
 }
