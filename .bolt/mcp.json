@@ -13,7 +13,7 @@
       "enabled": true
     },
     "zread": {
-      "enabled": false
+      "enabled": true
     }
   }
 }
