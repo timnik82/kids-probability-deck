@@ -10,7 +10,7 @@
       "enabled": true
     },
     "ref_plans": {
-      "enabled": true
+      "enabled": false
     },
     "zread": {
       "enabled": true
